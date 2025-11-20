@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 const title = "About | Shay Henderson";
-const description = "Learn more about Shay Henderson - Software and Infrastructure Engineer with 6+ years of experience in software development, cloud infrastructure, QA, and technical support. Building scalable solutions with proven impact across web, mobile, and cloud platforms.";
+const description = "Discover my journey from technical support to full-stack development. Learn how I approach building reliable systems that deliver measurable results.";
 
 const timeline = [
   {
@@ -111,6 +111,45 @@ const interests = [
       ]
     },
     "about": "Professional background and experience of Shay Henderson, including career timeline, skills, and areas of expertise."
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What services does Shay Henderson offer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Full-stack development, cloud infrastructure management, QA engineering, technical documentation, and support engineering. Specializing in building scalable web and mobile applications with modern frameworks."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What technologies does Shay Henderson specialize in?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "React, Next.js, TypeScript, Astro, Google Cloud Platform (GCP), Cloudflare, Azure, Vercel, and DevOps tools. Experienced in both frontend and backend development with cloud infrastructure."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where is Shay Henderson based?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Shay Henderson is based in Scotland, United Kingdom, and works with clients globally on software development and infrastructure projects."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Shay Henderson's professional background?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "6+ years of experience in software development, starting in technical support and QA, progressing to full-stack development and infrastructure engineering. Experience includes work with JPG Store, SecurityBot, and various cloud infrastructure projects."
+        }
+      }
+    ]
   })} />
 
   <div class="container mx-auto px-6 py-8 max-w-4xl">

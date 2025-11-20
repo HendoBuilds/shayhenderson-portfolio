@@ -6,6 +6,9 @@ import Services from '../components/services.astro';
 import { GitHubActivity } from "@/components/GitHubActivity";
 import ErrorBoundary from "@/components/ErrorBoundary";
 
+const title = "Shay Henderson | Software and Infrastructure Engineer";
+const description = "Shay Henderson - Software & Infrastructure Engineer. 6+ years delivering scalable web applications, cloud infrastructure, and technical documentation with measurable impact.";
+
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -19,7 +22,7 @@ const websiteSchema = {
 };
 ---
 
-<Layout>
+<Layout title={title} description={description}>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(websiteSchema)} />
 
   <Hero />

@@ -4,7 +4,7 @@ import { Icon } from 'astro-icon/components';
 import CheckListItem from '../components/CheckListItem.astro';
 
 const title = "Shay Henderson - CV | Software & Infrastructure Engineer";
-const description = "Professional CV of Shay Henderson - Software & Infrastructure Engineer with 6+ years in development, cloud infrastructure, QA, DevOps, and technical support.";
+const description = "Full professional CV and work history. 6+ years in full-stack development, cloud infrastructure, QA automation, DevOps, and technical support operations.";
 ---
 
 <Layout title={title} description={description}>
@@ -23,6 +23,68 @@ const description = "Professional CV of Shay Henderson - Software & Infrastructu
         "position": 2,
         "name": "CV",
         "item": "https://shayhenderson.dev/cv"
+      }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Shay Henderson",
+    "jobTitle": "Software and Infrastructure Engineer",
+    "email": "contact@shayhenderson.dev",
+    "url": "https://shayhenderson.dev",
+    "sameAs": [
+      "https://github.com/HendoBuilds",
+      "https://www.linkedin.com/in/shay-henderson/"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "GB",
+      "addressRegion": "Scotland"
+    },
+    "hasOccupation": [
+      {
+        "@type": "Occupation",
+        "name": "Software Engineer",
+        "occupationLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "GB",
+            "addressRegion": "Scotland"
+          }
+        },
+        "skills": "React, Next.js, TypeScript, JavaScript, Astro, Full-Stack Development",
+        "description": "Building scalable web and mobile applications with modern frameworks"
+      },
+      {
+        "@type": "Occupation",
+        "name": "Infrastructure Engineer",
+        "occupationLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "GB",
+            "addressRegion": "Scotland"
+          }
+        },
+        "skills": "Google Cloud Platform, Cloudflare, Azure, Vercel, DevOps, Site Reliability Engineering",
+        "description": "Managing cloud infrastructure and ensuring system reliability"
+      },
+      {
+        "@type": "Occupation",
+        "name": "QA Engineer",
+        "occupationLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "GB",
+            "addressRegion": "Scotland"
+          }
+        },
+        "skills": "Quality Assurance, Test Automation, Technical Documentation, Support Engineering",
+        "description": "Ensuring software quality through testing and documentation"
       }
     ]
   })} />
