@@ -1,0 +1,68 @@
+<button
+  id="theme-toggle"
+  type="button"
+  aria-label="Toggle dark mode"
+  class="p-1.5 rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition-all duration-200"
+>
+  <svg
+    id="theme-icon"
+    class="w-5 h-5 transition-transform duration-300"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <g id="sun-icon" class="hidden">
+      <circle cx="12" cy="12" r="4" stroke-width="2"/>
+      <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    <g id="moon-icon">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </svg>
+</button>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('theme-toggle');
+    const icon = document.getElementById('theme-icon');
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
+    const html = document.documentElement;
+
+    if (!btn || !icon || !sunIcon || !moonIcon) return;
+
+    function updateIcon(isDark: boolean) {
+      if (isDark) {
+        moonIcon.classList.add('hidden');
+        sunIcon.classList.remove('hidden');
+      } else {
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      }
+    }
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const storedTheme = localStorage.theme;
+
+    if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+      html.classList.add('dark');
+      updateIcon(true);
+    } else {
+      html.classList.remove('dark');
+      updateIcon(false);
+    }
+
+    btn.addEventListener('click', () => {
+      const isDark = html.classList.toggle('dark');
+      localStorage.theme = isDark ? 'dark' : 'light';
+
+      icon.style.transform = 'rotate(360deg)';
+      setTimeout(() => {
+        icon.style.transform = 'rotate(0deg)';
+      }, 300);
+
+      updateIcon(isDark);
+    });
+  });
+</script>

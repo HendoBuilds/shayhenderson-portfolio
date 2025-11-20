@@ -1,0 +1,167 @@
+<nav aria-label="Main navigation" class="relative">
+  <button
+    id="mobile-menu-button"
+    class="md:hidden p-2 rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition-all duration-300"
+    aria-label="Toggle menu"
+    aria-expanded="false"
+    aria-controls="mobile-menu"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path id="hamburger-top" class="transition-all duration-300 origin-center" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16"/>
+      <path id="hamburger-middle" class="transition-all duration-300" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12h16"/>
+      <path id="hamburger-bottom" class="transition-all duration-300 origin-center" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 18h16"/>
+    </svg>
+  </button>
+
+  <ul class="hidden md:flex gap-2 lg:gap-3 px-2.5 lg:px-4 py-0.5 rounded-full">
+    <li><a href="/about" class="nav-link font-normal text-sm text-foreground transition px-2 lg:px-2.5 py-1 rounded-full hover:bg-black/10 dark:hover:bg-white/10 hover:shadow-inner min-h-[44px] flex items-center">About</a></li>
+    <li><a href="/projects" class="nav-link font-normal text-sm text-foreground transition px-2 lg:px-2.5 py-1 rounded-full hover:bg-black/10 dark:hover:bg-white/10 hover:shadow-inner min-h-[44px] flex items-center">Projects</a></li>
+    <li><a href="/cv" class="nav-link font-normal text-sm text-foreground transition px-2 lg:px-2.5 py-1 rounded-full hover:bg-black/10 dark:hover:bg-white/10 hover:shadow-inner min-h-[44px] flex items-center">CV</a></li>
+  </ul>
+
+  <div
+    id="mobile-backdrop"
+    class="md:hidden fixed inset-0 bg-black/20 backdrop-blur-sm -z-10 opacity-0 pointer-events-none transition-opacity duration-200"
+    aria-hidden="true"
+  ></div>
+
+  <div
+    id="mobile-menu"
+    class="md:hidden absolute top-full right-0 mt-2 min-w-[12rem] bg-background/95 backdrop-blur-md rounded-lg shadow-lg border opacity-0 scale-95 pointer-events-none transition-all duration-200 origin-top-right"
+    role="menu"
+  >
+    <ul class="p-2 space-y-1">
+      <li role="none">
+        <a
+          href="/about"
+          class="nav-link-mobile block px-3 py-2 font-normal text-sm text-foreground hover:bg-black/10 dark:hover:bg-white/10 transition-all duration-150 min-h-[44px] flex items-center rounded-lg hover:scale-[1.02]"
+          role="menuitem"
+        >About</a>
+      </li>
+      <li role="none">
+        <a
+          href="/projects"
+          class="nav-link-mobile block px-3 py-2 font-normal text-sm text-foreground hover:bg-black/10 dark:hover:bg-white/10 transition-all duration-150 min-h-[44px] flex items-center rounded-lg hover:scale-[1.02]"
+          role="menuitem"
+        >Projects</a>
+      </li>
+      <li role="none">
+        <a
+          href="/cv"
+          class="nav-link-mobile block px-3 py-2 font-normal text-sm text-foreground hover:bg-black/10 dark:hover:bg-white/10 transition-all duration-150 min-h-[44px] flex items-center rounded-lg hover:scale-[1.02]"
+          role="menuitem"
+        >CV</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<script>
+  function updateActiveNav() {
+    const navLinks = document.querySelectorAll('.nav-link, .nav-link-mobile');
+    const currentPath = window.location.pathname;
+
+    navLinks.forEach(link => {
+      if (link instanceof HTMLAnchorElement) {
+        if (link.getAttribute('href') === currentPath) {
+          link.setAttribute('aria-current', 'page');
+          link.classList.add('bg-black/10', 'dark:bg-white/10', 'shadow-inner');
+        } else {
+          link.removeAttribute('aria-current');
+          link.classList.remove('bg-black/10', 'dark:bg-white/10', 'shadow-inner');
+        }
+      }
+    });
+  }
+
+  function animateHamburger(isOpen: boolean) {
+    const topLine = document.getElementById('hamburger-top');
+    const middleLine = document.getElementById('hamburger-middle');
+    const bottomLine = document.getElementById('hamburger-bottom');
+
+    if (!topLine || !middleLine || !bottomLine) return;
+
+    if (isOpen) {
+      topLine.setAttribute('d', 'M6 6L18 18');
+      middleLine.setAttribute('d', 'M12 12h0');
+      middleLine.style.opacity = '0';
+      bottomLine.setAttribute('d', 'M6 18L18 6');
+    } else {
+      topLine.setAttribute('d', 'M4 6h16');
+      middleLine.setAttribute('d', 'M4 12h16');
+      middleLine.style.opacity = '1';
+      bottomLine.setAttribute('d', 'M4 18h16');
+    }
+  }
+
+  function setupMobileMenu() {
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const backdrop = document.getElementById('mobile-backdrop');
+
+    if (!menuButton || !mobileMenu || !backdrop) return;
+
+    function openMenu() {
+      menuButton.setAttribute('aria-expanded', 'true');
+      mobileMenu.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+      mobileMenu.classList.add('opacity-100', 'scale-100');
+      backdrop.classList.remove('opacity-0', 'pointer-events-none');
+      backdrop.classList.add('opacity-100');
+      animateHamburger(true);
+    }
+
+    function closeMenu() {
+      menuButton.setAttribute('aria-expanded', 'false');
+      mobileMenu.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+      mobileMenu.classList.remove('opacity-100', 'scale-100');
+      backdrop.classList.add('opacity-0', 'pointer-events-none');
+      backdrop.classList.remove('opacity-100');
+      animateHamburger(false);
+    }
+
+    menuButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+
+      if (isExpanded) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    backdrop.addEventListener('click', () => {
+      closeMenu();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.contains(e.target as Node) && e.target !== menuButton) {
+        closeMenu();
+      }
+    });
+
+    const mobileLinks = mobileMenu.querySelectorAll('.nav-link-mobile');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeMenu();
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
+        closeMenu();
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    updateActiveNav();
+    setupMobileMenu();
+  });
+
+  // For client-side routing if used in future
+  document.addEventListener('astro:page-load', () => {
+    updateActiveNav();
+    setupMobileMenu();
+  });
+</script>

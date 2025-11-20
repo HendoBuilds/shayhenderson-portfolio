@@ -1,0 +1,22 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="text-foreground text-sm py-6 mt-12 border-t -mx-4 md:-mx-6 lg:-mx-8 px-4 md:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+    <p class="text-center md:text-left">© {year} Shay Henderson. All rights reserved.</p>
+    <div class="flex gap-4">
+      <a href="https://www.linkedin.com/in/shay-henderson/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="hover:text-primary transition p-2 min-h-[44px] min-w-[44px] flex items-center justify-center">
+        <Icon name="mdi:linkedin" class="text-2xl" aria-hidden="true" />
+      </a>
+      <a href="https://github.com/HendoBuilds" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="hover:text-primary transition p-2 min-h-[44px] min-w-[44px] flex items-center justify-center">
+        <Icon name="mdi:github" class="text-2xl" aria-hidden="true" />
+      </a>
+      <a href="mailto:contact@shayhenderson.dev" aria-label="Email" class="hover:text-primary transition p-2 min-h-[44px] min-w-[44px] flex items-center justify-center">
+        <Icon name="mdi:email" class="text-2xl" aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,26 @@
+{
+  "name": "Shay Henderson Portfolio",
+  "short_name": "Shay Portfolio",
+  "description": "Web developer and systems engineer specializing in Astro, Next.js, Tailwind CSS, and automation.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "categories": ["business", "productivity", "technology"],
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/logo-light.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo-dark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

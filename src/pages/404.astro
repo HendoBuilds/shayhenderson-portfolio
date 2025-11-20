@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+
+const title = "404 - Page Not Found | Shay Henderson";
+const description = "The page you're looking for doesn't exist. Let's get you back on track.";
+---
+
+<Layout title={title} description={description}>
+  <div class="container mx-auto px-6 py-16 max-w-4xl text-center">
+    <div class="mb-16">
+      <div class="relative mb-8">
+        <h1 class="text-7xl md:text-9xl font-black text-gray-700 dark:text-gray-200 mb-4 tracking-tight">404</h1>
+      </div>
+
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <Icon name="mdi:map-marker-question" class="text-4xl md:text-5xl text-primary" />
+        <h2 class="text-4xl md:text-5xl font-bold text-foreground leading-tight">
+          Page Not Found
+        </h2>
+      </div>
+
+      <p class="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-medium">
+        Looks like this page took a detour! 🗺️ It might have been moved, deleted, or you might have typed the wrong URL.
+        No worries though - let's get you back on the right path.
+      </p>
+    </div>
+
+    <div class="mb-16">
+      <h3 class="text-xl font-semibold text-foreground mb-8 flex items-center justify-center gap-3">
+        <Icon name="mdi:compass" class="text-2xl text-primary" />
+        Let's get you back on track:
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto">
+        <a href="/" class="group bg-card p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-border hover:border-primary/50 hover:-translate-y-2 relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="relative z-10">
+            <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
+              <Icon name="mdi:home" class="text-3xl text-primary" />
+            </div>
+            <h4 class="font-bold text-foreground mb-3 text-lg">Go Home</h4>
+            <p class="text-muted-foreground text-sm leading-relaxed">Return to the homepage and explore</p>
+          </div>
+        </a>
+
+        <a href="/projects" class="group bg-card p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-border hover:border-primary/50 hover:-translate-y-2 relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="relative z-10">
+            <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
+              <Icon name="mdi:folder-open" class="text-3xl text-primary" />
+            </div>
+            <h4 class="font-bold text-foreground mb-3 text-lg">View Projects</h4>
+            <p class="text-muted-foreground text-sm leading-relaxed">Browse my latest work and projects</p>
+          </div>
+        </a>
+
+        <a href="/about" class="group bg-card p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-border hover:border-primary/50 hover:-translate-y-2 relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="relative z-10">
+            <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
+              <Icon name="mdi:account" class="text-3xl text-primary" />
+            </div>
+            <h4 class="font-bold text-foreground mb-3 text-lg">About Me</h4>
+            <p class="text-muted-foreground text-sm leading-relaxed">Learn more about my background</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="bg-muted/50 rounded-2xl p-8 border border-border backdrop-blur-sm">
+      <div class="flex items-center justify-center gap-3 mb-4">
+        <Icon name="mdi:help-circle" class="text-2xl text-primary" />
+        <h3 class="text-lg font-semibold text-foreground">Still can't find what you're looking for?</h3>
+      </div>
+      <p class="text-muted-foreground mb-6">
+        Feel free to reach out if you think there's a broken link or if you need help finding something specific. 
+        I'm here to help! 🚀
+      </p>
+      <a
+        href="mailto:contact@shayhenderson.dev"
+        class="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-xl font-medium hover:bg-primary/90 transition-colors duration-200 hover:scale-105"
+      >
+        <Icon name="mdi:email" class="text-lg" />
+        Contact Me
+      </a>
+    </div>
+  </div>
+</Layout> 
