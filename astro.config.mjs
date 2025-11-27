@@ -7,7 +7,7 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://shayhenderson.dev',
+  site: 'https://www.shayhenderson.dev',
   integrations: [
     tailwind(),
     icon(),
@@ -15,7 +15,7 @@ export default defineConfig({
       filter: (page) => !page.includes('/404'),
       serialize(item) {
         // Homepage gets highest priority
-        if (item.url === 'https://shayhenderson.dev/') {
+        if (item.url === 'https://www.shayhenderson.dev/') {
           item.priority = 1.0;
           // @ts-expect-error - 'weekly' is a valid sitemap changefreq value
           item.changefreq = 'weekly';

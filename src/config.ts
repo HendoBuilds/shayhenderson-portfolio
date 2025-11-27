@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
   name: "Shay Henderson",
   title: "Shay Henderson | Software and Infrastructure Engineer",
   description: "Software & Infrastructure Engineer with 6+ years building scalable web, mobile, and cloud solutions. Specializing in development, QA, DevOps, and support.",
-  url: "https://shayhenderson.dev",
+  url: "https://www.shayhenderson.dev",
   email: "contact@shayhenderson.dev",
 
   social: {

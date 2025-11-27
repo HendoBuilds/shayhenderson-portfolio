@@ -30,7 +30,7 @@ const projects = [
     description: "Modern, responsive portfolio built with Astro and Tailwind CSS. Features dark mode, smooth animations, and optimized performance.",
     tech: ["Astro", "TypeScript", "Tailwind CSS", "Vercel"],
     github: null,
-    live: "https://shayhenderson.dev",
+    live: "https://www.shayhenderson.dev",
     category: "Frontend",
     featured: true
   }
@@ -48,13 +48,13 @@ const categories = [...new Set(projects.map(project => project.category))];
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://shayhenderson.dev"
+        "item": "https://www.shayhenderson.dev"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Projects",
-        "item": "https://shayhenderson.dev/projects"
+        "item": "https://www.shayhenderson.dev/projects"
       }
     ]
   })} />
@@ -75,7 +75,7 @@ const categories = [...new Set(projects.map(project => project.category))];
         "author": {
           "@type": "Person",
           "name": "Shay Henderson",
-          "url": "https://shayhenderson.dev"
+          "url": "https://www.shayhenderson.dev"
         },
         "url": project.live,
         "keywords": project.tech.join(", "),

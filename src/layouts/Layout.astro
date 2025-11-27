@@ -16,7 +16,7 @@ const {
 } = Astro.props;
 
 // Site URL and canonical URL setup
-const siteUrl = "https://shayhenderson.dev";
+const siteUrl = "https://www.shayhenderson.dev";
 const canonicalURL = new URL(Astro.url.pathname, siteUrl).href;
 const image = `${siteUrl}/shay-portfolio.webp`;
 ---
@@ -71,7 +71,7 @@ const image = `${siteUrl}/shay-portfolio.webp`;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
     <meta name="twitter:image:alt" content="Shay Henderson - Web Developer Portfolio" />
-    <meta name="twitter:domain" content="shayhenderson.dev" />
+    <meta name="twitter:domain" content="www.shayhenderson.dev" />
 
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",

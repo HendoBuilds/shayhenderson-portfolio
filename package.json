@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "Modern portfolio website for Shay Henderson - Software and Infrastructure Engineer",
   "author": "Shay Henderson <contact@shayhenderson.dev>",
-  "homepage": "https://shayhenderson.dev",
+  "homepage": "https://www.shayhenderson.dev",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",

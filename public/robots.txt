@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://shayhenderson.dev/sitemap-index.xml
+Sitemap: https://www.shayhenderson.dev/sitemap-index.xml

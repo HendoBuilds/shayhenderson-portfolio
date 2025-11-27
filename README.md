@@ -2,7 +2,7 @@
 
 Professional portfolio showcasing 6+ years of experience in software development, infrastructure engineering, and technical support. Built with modern web technologies to demonstrate expertise in full-stack development, performance optimization, and user-centric design.
 
-🔗 **Live Site**: [shayhenderson.dev](https://shayhenderson.dev)
+🔗 **Live Site**: [shayhenderson.dev](https://www.shayhenderson.dev)
 
 ## Tech Stack
 
@@ -15,4 +15,4 @@ Professional portfolio showcasing 6+ years of experience in software development
 
 ---
 
-Built by [Shay Henderson](https://shayhenderson.dev) | [GitHub](https://github.com/HendoBuilds)
+Built by [Shay Henderson](https://www.shayhenderson.dev) | [GitHub](https://github.com/HendoBuilds)
