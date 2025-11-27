@@ -14,7 +14,8 @@ const projects = [
     github: null,
     live: "https://help.jpg.store",
     category: "Documentation",
-    featured: true
+    featured: true,
+    image: "/jpg-store-help-center.png"
   },
   {
     title: "SecurityBot Knowledge Hub",
@@ -23,7 +24,8 @@ const projects = [
     github: null,
     live: "https://securitybot.gitbook.io/securitybot-knowledge-hub/",
     category: "Documentation",
-    featured: true
+    featured: true,
+    image: "/securitybot-knowledge-hub.png"
   },
   {
     title: "Portfolio Website",
@@ -32,7 +34,8 @@ const projects = [
     github: null,
     live: "https://www.shayhenderson.dev",
     category: "Frontend",
-    featured: true
+    featured: true,
+    image: "/shay-portfolio.webp"
   }
 ];
 
@@ -102,9 +105,18 @@ const categories = [...new Set(projects.map(project => project.category))];
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
         {projects.filter(p => p.featured).map((project) => (
           <div class="bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border">
-            <div class="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-              <Icon name="mdi:code-braces" class="text-6xl text-primary-foreground" />
-            </div>
+            {project.image ? (
+              <img
+                src={project.image}
+                alt={`Screenshot of ${project.title}`}
+                class="aspect-video w-full object-cover"
+                loading="lazy"
+              />
+            ) : (
+              <div class="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                <Icon name="mdi:code-braces" class="text-6xl text-primary-foreground" />
+              </div>
+            )}
             <div class="p-6">
               <div class="flex items-center justify-between mb-3">
                 <h3 class="text-2xl font-semibold text-foreground">{project.title}</h3>
@@ -159,9 +171,18 @@ const categories = [...new Set(projects.map(project => project.category))];
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
         {projects.map((project) => (
           <div class="project-card bg-card rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border overflow-hidden" data-category={project.category.toLowerCase()}>
-            <div class="h-32 bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center">
-              <Icon name="mdi:code-braces" class="text-4xl text-primary-foreground" />
-            </div>
+            {project.image ? (
+              <img
+                src={project.image}
+                alt={`Screenshot of ${project.title}`}
+                class="aspect-video w-full object-cover"
+                loading="lazy"
+              />
+            ) : (
+              <div class="h-32 bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center">
+                <Icon name="mdi:code-braces" class="text-4xl text-primary-foreground" />
+              </div>
+            )}
             <div class="p-4">
               <div class="flex items-center justify-between mb-2">
                 <h3 class="text-lg font-semibold text-foreground">{project.title}</h3>
