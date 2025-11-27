@@ -29,8 +29,8 @@ const websiteSchema = {
   <div class="space-y-8 md:space-y-12">
     <About />
     <Services />
-    <ErrorBoundary client:only="react">
-      <GitHubActivity client:only="react" />
+    <ErrorBoundary client:visible>
+      <GitHubActivity client:visible />
     </ErrorBoundary>
   </div>
 </Layout> 

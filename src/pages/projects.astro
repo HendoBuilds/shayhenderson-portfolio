@@ -103,7 +103,7 @@ const categories = [...new Set(projects.map(project => project.category))];
         {projects.filter(p => p.featured).map((project) => (
           <div class="bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border">
             <div class="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-              <Icon name="mdi:code-braces" class="text-6xl text-primary-foreground opacity-80" />
+              <Icon name="mdi:code-braces" class="text-6xl text-primary-foreground" />
             </div>
             <div class="p-6">
               <div class="flex items-center justify-between mb-3">
@@ -123,7 +123,7 @@ const categories = [...new Set(projects.map(project => project.category))];
               <div class="flex gap-3">
                 {project.live && (
                   <Button asChild>
-                    <a href={project.live} target="_blank" rel="noopener noreferrer">
+                    <a href={project.live} target="_blank" rel="noopener noreferrer" aria-label={`Live demo for ${project.title}`}>
                       <Icon name="mdi:open-in-new" class="text-lg mr-2" />
                       Live Demo
                     </a>
@@ -131,7 +131,7 @@ const categories = [...new Set(projects.map(project => project.category))];
                 )}
                 {project.github && (
                   <Button variant="secondary" asChild>
-                    <a href={project.github} target="_blank" rel="noopener noreferrer">
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`View source code for ${project.title} on GitHub`}>
                       <Icon name="mdi:github" class="text-lg mr-2" />
                       GitHub
                     </a>
@@ -149,10 +149,10 @@ const categories = [...new Set(projects.map(project => project.category))];
         All Projects
       </h2>
 
-      <div class="flex flex-wrap gap-3 mb-8">
-        <Button className="category-filter" data-category="all" variant="default">All Categories</Button>
+      <div class="flex flex-wrap gap-3 mb-8" role="group" aria-label="Filter projects by category">
+        <Button className="category-filter" data-category="all" variant="default" aria-pressed="true">All Categories</Button>
         {categories.map((category) => (
-          <Button className="category-filter" data-category={category.toLowerCase()} variant="secondary">{category}</Button>
+          <Button className="category-filter" data-category={category.toLowerCase()} variant="secondary" aria-pressed="false">{category}</Button>
         ))}
       </div>
 
@@ -160,7 +160,7 @@ const categories = [...new Set(projects.map(project => project.category))];
         {projects.map((project) => (
           <div class="project-card bg-card rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border overflow-hidden" data-category={project.category.toLowerCase()}>
             <div class="h-32 bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center">
-              <Icon name="mdi:code-braces" class="text-4xl text-primary-foreground opacity-80" />
+              <Icon name="mdi:code-braces" class="text-4xl text-primary-foreground" />
             </div>
             <div class="p-4">
               <div class="flex items-center justify-between mb-2">
@@ -185,7 +185,7 @@ const categories = [...new Set(projects.map(project => project.category))];
               <div class="flex gap-2">
                 {project.live && (
                    <Button asChild size="sm" className="h-8">
-                    <a href={project.live} target="_blank" rel="noopener noreferrer">
+                    <a href={project.live} target="_blank" rel="noopener noreferrer" aria-label={`View demo of ${project.title}`}>
                       <Icon name="mdi:open-in-new" class="text-sm mr-1" />
                       Demo
                     </a>
@@ -193,7 +193,7 @@ const categories = [...new Set(projects.map(project => project.category))];
                 )}
                 {project.github && (
                   <Button variant="secondary" asChild size="sm" className="h-8">
-                    <a href={project.github} target="_blank" rel="noopener noreferrer">
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} code on GitHub`}>
                       <Icon name="mdi:github" class="text-sm mr-1" />
                       Code
                     </a>
@@ -257,12 +257,14 @@ const categories = [...new Set(projects.map(project => project.category))];
         button.addEventListener('click', (e) => {
           const target = e.currentTarget as HTMLElement;
           const category = target.getAttribute('data-category');
-          
-          // Update active button
+
+          // Update active button and aria-pressed state
           filterButtons.forEach(btn => {
+            btn.setAttribute('aria-pressed', 'false');
             btn.classList.remove('bg-primary', 'text-primary-foreground', 'hover:bg-primary/90');
             btn.classList.add('bg-secondary', 'text-secondary-foreground', 'hover:bg-secondary/80');
           });
+          target.setAttribute('aria-pressed', 'true');
           target.classList.remove('bg-secondary', 'text-secondary-foreground', 'hover:bg-secondary/80');
           target.classList.add('bg-primary', 'text-primary-foreground', 'hover:bg-primary/90');
 
