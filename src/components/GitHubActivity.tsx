@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { SITE_CONFIG } from "@/config";
 
 const GITHUB_USERNAME = SITE_CONFIG.social.github.username;
-const API_URL = `https://github-contributions-api.jogruber.de/v4/${GITHUB_USERNAME}`;
+const API_URL = '/api/github-activity';
 const CACHE_KEY = 'github-activity-cache';
 const CACHE_TTL = 1000 * 60 * 60; // 1 hour
 const FETCH_TIMEOUT = 10000; // 10 seconds

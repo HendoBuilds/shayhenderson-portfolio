@@ -4,10 +4,12 @@ import tailwind from '@astrojs/tailwind';
 import icon from 'astro-icon';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
+import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.shayhenderson.dev',
+  adapter: vercel(),
   integrations: [
     tailwind(),
     icon(),

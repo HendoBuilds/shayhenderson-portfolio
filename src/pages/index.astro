@@ -4,7 +4,6 @@ import Hero from '../components/hero.astro';
 import About from '../components/about.astro';
 import Services from '../components/services.astro';
 import { GitHubActivity } from "@/components/GitHubActivity";
-import ErrorBoundary from "@/components/ErrorBoundary";
 
 const title = "Shay Henderson | Software and Infrastructure Engineer";
 const description = "Shay Henderson - Software & Infrastructure Engineer. 6+ years building scalable web applications, cloud infrastructure, and technical documentation.";
@@ -29,8 +28,6 @@ const websiteSchema = {
   <div class="space-y-8 md:space-y-12">
     <About />
     <Services />
-    <ErrorBoundary client:visible>
-      <GitHubActivity client:visible />
-    </ErrorBoundary>
+    <GitHubActivity client:visible />
   </div>
 </Layout> 
