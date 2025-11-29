@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { ActivityCalendar } from "react-activity-calendar";
 import type { Activity } from "react-activity-calendar";
+import { Tooltip } from "react-tooltip";
 import { cn } from "@/lib/utils";
 import { SITE_CONFIG } from "@/config";
 
 const GITHUB_USERNAME = SITE_CONFIG.social.github.username;
-const API_URL = '/api/github-activity';
-const CACHE_KEY = 'github-activity-cache';
+const API_URL = "/api/github-activity";
+const CACHE_KEY = "github-activity-cache";
 const CACHE_TTL = 1000 * 60 * 60; // 1 hour
-const FETCH_TIMEOUT = 10000; // 10 seconds
+const CACHE_VERSION = 2;
+const FETCH_TIMEOUT = 10000;
 
 const CALENDAR_CONFIG = {
   blockSize: 11,
@@ -19,18 +21,18 @@ const CALENDAR_CONFIG = {
 
 const CUSTOM_THEME = {
   light: [
-    "hsl(0, 0%, 92%)",   // Level 0 - lightest
-    "hsl(0, 0%, 70%)",   // Level 1
-    "hsl(0, 0%, 50%)",   // Level 2
-    "hsl(0, 0%, 30%)",   // Level 3
-    "hsl(0, 0%, 9%)",    // Level 4 - darkest (primary)
+    "hsl(0, 0%, 92%)",
+    "hsl(0, 0%, 70%)",
+    "hsl(0, 0%, 50%)",
+    "hsl(0, 0%, 30%)",
+    "hsl(0, 0%, 9%)",
   ],
   dark: [
-    "hsl(0, 0%, 20%)",   // Level 0 - darkest
-    "hsl(0, 0%, 40%)",   // Level 1
-    "hsl(0, 0%, 60%)",   // Level 2
-    "hsl(0, 0%, 80%)",   // Level 3
-    "hsl(0, 0%, 98%)",   // Level 4 - lightest (foreground)
+    "hsl(0, 0%, 20%)",
+    "hsl(0, 0%, 40%)",
+    "hsl(0, 0%, 60%)",
+    "hsl(0, 0%, 80%)",
+    "hsl(0, 0%, 98%)",
   ],
 };
 
@@ -39,16 +41,36 @@ interface GitHubActivityProps {
 }
 
 interface GitHubData {
-  total: Record<string | number, number>;
   contributions: Activity[];
+  lastYearTotal: number;
+  allTimeTotal: number;
+  yearRange: string;
 }
 
-/** Displays GitHub contribution calendar with caching */
+interface CachedData {
+  data: GitHubData;
+  timestamp: number;
+  version: number;
+}
+
+const formatDate = (dateStr: string): string => {
+  return new Date(dateStr).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+};
+
+const formatTooltip = (count: number, date: string): string => {
+  const formattedDate = formatDate(date);
+  if (count === 0) return `No contributions on ${formattedDate}`;
+  if (count === 1) return `1 contribution on ${formattedDate}`;
+  return `${count} contributions on ${formattedDate}`;
+};
+
 export const GitHubActivity = ({ className }: GitHubActivityProps) => {
-  const [data, setData] = useState<Activity[] | null>(null);
-  const [totalContributions, setTotalContributions] = useState<number>(0);
-  const [yearRange, setYearRange] = useState<string>("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState<GitHubData | null>(null);
+  const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -56,110 +78,69 @@ export const GitHubActivity = ({ className }: GitHubActivityProps) => {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT);
 
-    const fetchGitHubData = async () => {
+    const fetchData = async () => {
+      // Check cache first
       try {
         const cached = localStorage.getItem(CACHE_KEY);
         if (cached) {
-          try {
-            const { data: cachedData, timestamp } = JSON.parse(cached);
-            if (Date.now() - timestamp < CACHE_TTL) {
-              if (isMounted) {
-                setData(cachedData.contributions);
-                setYearRange(cachedData.yearRange);
-                setTotalContributions(cachedData.total);
-                setIsLoading(false);
-              }
-              clearTimeout(timeoutId);
-              return;
+          const parsed: CachedData = JSON.parse(cached);
+          if (
+            parsed.version === CACHE_VERSION &&
+            Date.now() - parsed.timestamp < CACHE_TTL
+          ) {
+            if (isMounted) {
+              setData(parsed.data);
+              setStatus("success");
             }
-          } catch (e) {
-            if (import.meta.env.DEV) {
-              console.warn("Failed to parse cache, fetching fresh data", e);
-            }
+            clearTimeout(timeoutId);
+            return;
           }
         }
+      } catch {
+        // Invalid cache, continue to fetch
+      }
 
-        if (!isMounted) return;
-        setIsLoading(true);
-
+      try {
         const response = await fetch(API_URL, { signal: controller.signal });
         clearTimeout(timeoutId);
 
         if (!response.ok) {
-          throw new Error(`Failed to fetch GitHub data: ${response.status}`);
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.error || `Failed to fetch: ${response.status}`);
         }
 
-        const json: GitHubData = await response.json();
-
-        if (!json.contributions || !Array.isArray(json.contributions) || !json.total) {
-          throw new Error("Invalid data structure received");
-        }
-
-        if (json.contributions.length > 0) {
-          const sample = json.contributions[0];
-          if (!sample.date || typeof sample.count !== 'number') {
-            throw new Error("Invalid contribution data format");
-          }
-        }
-
-        const sortedContributions = [...json.contributions].sort((a, b) =>
-          a.date.localeCompare(b.date)
-        );
-        const lastYearData = sortedContributions.slice(-365);
-
-        let yearRange = "";
-        if (lastYearData.length > 0) {
-          const firstDate = new Date(lastYearData[0].date);
-          const lastDate = new Date(lastYearData[lastYearData.length - 1].date);
-          const startYear = firstDate.getFullYear();
-          const endYear = lastDate.getFullYear();
-
-          yearRange = startYear === endYear ? `${startYear}` : `${startYear} - ${endYear}`;
-        }
-
-        const currentYear = new Date().getFullYear();
-        const total = json.total[currentYear] || json.total["lastYear"] ||
-          lastYearData.reduce((sum, day) => sum + day.count, 0);
+        const result: GitHubData = await response.json();
 
         if (isMounted) {
-          setData(lastYearData);
-          setYearRange(yearRange);
-          setTotalContributions(total);
-          setIsLoading(false);
+          setData(result);
+          setStatus("success");
 
+          // Cache the result
           try {
-            localStorage.setItem(CACHE_KEY, JSON.stringify({
-              data: {
-                contributions: lastYearData,
-                yearRange,
-                total,
-              },
-              timestamp: Date.now()
-            }));
-          } catch (e) {
-            if (import.meta.env.DEV) {
-              console.warn("Failed to cache GitHub data", e);
-            }
+            const cacheData: CachedData = {
+              data: result,
+              timestamp: Date.now(),
+              version: CACHE_VERSION,
+            };
+            localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
+          } catch {
+            // Cache write failed, continue
           }
         }
       } catch (err) {
         clearTimeout(timeoutId);
         if (isMounted) {
-          if (import.meta.env.DEV) {
-            console.error("Error fetching GitHub data:", err);
-          }
-
-          if (err instanceof Error && err.name === 'AbortError') {
-            setError('Request timed out. Please try again.');
+          if (err instanceof Error && err.name === "AbortError") {
+            setError("Request timed out. Please try again.");
           } else {
             setError(err instanceof Error ? err.message : "Unable to load GitHub activity");
           }
-          setIsLoading(false);
+          setStatus("error");
         }
       }
     };
 
-    fetchGitHubData();
+    fetchData();
 
     return () => {
       isMounted = false;
@@ -210,31 +191,39 @@ export const GitHubActivity = ({ className }: GitHubActivityProps) => {
             </svg>
           </a>
 
-          {!isLoading && !error && (
-            <div className="flex flex-col items-center gap-1">
-              <div className="text-sm text-muted-foreground">
-                <span className="font-semibold text-foreground">{totalContributions.toLocaleString()}</span> contributions in the last year
+          {status === "success" && data && (
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
+              <div>
+                <span className="font-semibold text-foreground">
+                  {data.lastYearTotal.toLocaleString()}
+                </span>{" "}
+                contributions in the last year
               </div>
-              {yearRange && (
-                <div className="text-xs text-muted-foreground">
-                  {yearRange}
-                </div>
-              )}
+              <span className="hidden sm:inline text-muted-foreground/50">•</span>
+              <div>
+                <span className="font-semibold text-foreground">
+                  {data.allTimeTotal.toLocaleString()}
+                </span>{" "}
+                all time
+              </div>
             </div>
           )}
         </div>
 
         <div className="w-full max-w-4xl px-6 md:px-10 overflow-hidden">
-          {isLoading && (
+          {status === "loading" && (
             <div className="flex items-center justify-center py-12" role="status" aria-live="polite">
               <div className="animate-pulse flex flex-col items-center gap-2">
-                <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" aria-hidden="true"></div>
+                <div
+                  className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"
+                  aria-hidden="true"
+                />
                 <p className="text-sm text-muted-foreground">Loading GitHub activity...</p>
               </div>
             </div>
           )}
 
-          {error && (
+          {status === "error" && (
             <div className="flex items-center justify-center py-12" role="alert" aria-live="assertive">
               <div className="text-center">
                 <p className="text-sm text-destructive mb-2">{error}</p>
@@ -250,80 +239,33 @@ export const GitHubActivity = ({ className }: GitHubActivityProps) => {
             </div>
           )}
 
-          {!isLoading && !error && data && (
+          {status === "success" && data && (
             <section aria-label="GitHub contribution calendar" role="region">
-              <div className="github-calendar-container">
+              <div className="flex justify-center w-full overflow-hidden [&_.react-activity-calendar]:max-w-full [&_.react-activity-calendar_text]:fill-muted-foreground [&_.react-activity-calendar_text]:text-xs lg:[&_.react-activity-calendar]:scale-100 md:[&_.react-activity-calendar]:scale-95 sm:[&_.react-activity-calendar]:scale-85 [&_.react-activity-calendar]:scale-75">
                 <ActivityCalendar
-                  data={data}
+                  data={data.contributions}
                   theme={CUSTOM_THEME}
                   blockSize={CALENDAR_CONFIG.blockSize}
                   blockMargin={CALENDAR_CONFIG.blockMargin}
                   fontSize={CALENDAR_CONFIG.fontSize}
                   hideTotalCount
                   maxLevel={CALENDAR_CONFIG.maxLevel}
+                  renderBlock={(block, activity) =>
+                    React.cloneElement(block, {
+                      "data-tooltip-id": "github-activity-tooltip",
+                      "data-tooltip-content": formatTooltip(activity.count, activity.date),
+                    })
+                  }
+                />
+                <Tooltip
+                  id="github-activity-tooltip"
+                  className="!bg-popover !text-popover-foreground !text-xs !px-3 !py-2 !rounded-md !shadow-md !border !border-border"
                 />
               </div>
             </section>
           )}
         </div>
       </div>
-
-      <style>{`
-        .github-calendar-container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-          overflow: hidden;
-        }
-
-        .react-activity-calendar {
-          max-width: 100%;
-          width: auto;
-        }
-
-        @media (max-width: 1024px) {
-          .react-activity-calendar {
-            transform: scale(0.95);
-          }
-        }
-
-        @media (max-width: 768px) {
-          .react-activity-calendar {
-            transform: scale(0.85);
-          }
-        }
-
-        @media (max-width: 640px) {
-          .react-activity-calendar {
-            transform: scale(0.75);
-          }
-        }
-
-        .react-activity-calendar text {
-          fill: hsl(var(--muted-foreground));
-          font-size: 12px;
-        }
-
-        .dark .react-activity-calendar text {
-          fill: hsl(var(--muted-foreground));
-        }
-
-        [data-tooltip-content] {
-          cursor: pointer;
-          transition: all 0.2s ease;
-        }
-
-        [data-tooltip-content]:hover {
-          transform: scale(1.1);
-        }
-
-        @media (max-width: 768px) {
-          .react-activity-calendar text {
-            font-size: 11px;
-          }
-        }
-      `}</style>
     </div>
   );
 };
