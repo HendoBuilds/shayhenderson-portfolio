@@ -29,7 +29,6 @@ const image = `${siteUrl}/shay-portfolio.webp`;
 
     <link rel="preconnect" href="https://va.vercel-scripts.com" crossorigin />
     <link rel="preconnect" href="https://github-contributions-api.jogruber.de" crossorigin />
-    <link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
 
     <link rel="icon" type="image/svg+xml" href="/logo-light.svg" id="favicon" />
     <meta name="generator" content={Astro.generator} />
@@ -97,10 +96,6 @@ const image = `${siteUrl}/shay-portfolio.webp`;
       ],
       "description": description
     })} />
-
-    {import.meta.env.PUBLIC_CLOUDFLARE_TOKEN && (
-      <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon={`{"token": "${import.meta.env.PUBLIC_CLOUDFLARE_TOKEN}"}`}></script>
-    )}
 
     <SpeedInsights />
   </head>
