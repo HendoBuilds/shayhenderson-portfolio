@@ -21,18 +21,18 @@ const CALENDAR_CONFIG = {
 
 const CUSTOM_THEME = {
   light: [
-    "hsl(0, 0%, 92%)",
-    "hsl(0, 0%, 70%)",
-    "hsl(0, 0%, 50%)",
-    "hsl(0, 0%, 30%)",
-    "hsl(0, 0%, 9%)",
+    "hsl(0, 0%, 78%)",
+    "hsl(0, 0%, 60%)",
+    "hsl(0, 0%, 42%)",
+    "hsl(0, 0%, 24%)",
+    "hsl(0, 0%, 10%)",
   ],
   dark: [
-    "hsl(0, 0%, 20%)",
-    "hsl(0, 0%, 40%)",
-    "hsl(0, 0%, 60%)",
-    "hsl(0, 0%, 80%)",
-    "hsl(0, 0%, 98%)",
+    "hsl(0, 0%, 25%)",
+    "hsl(0, 0%, 42%)",
+    "hsl(0, 0%, 58%)",
+    "hsl(0, 0%, 75%)",
+    "hsl(0, 0%, 92%)",
   ],
 };
 
@@ -72,6 +72,31 @@ export const GitHubActivity = ({ className }: GitHubActivityProps) => {
   const [data, setData] = useState<GitHubData | null>(null);
   const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
   const [error, setError] = useState<string | null>(null);
+  const [colorScheme, setColorScheme] = useState<"light" | "dark">("light");
+
+  // Detect and sync with site theme (based on .dark class)
+  useEffect(() => {
+    const updateColorScheme = () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      setColorScheme(isDark ? "dark" : "light");
+    };
+
+    // Initial check
+    updateColorScheme();
+
+    // Watch for class changes on html element
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === "class") {
+          updateColorScheme();
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, { attributes: true });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     let isMounted = true;
@@ -245,6 +270,7 @@ export const GitHubActivity = ({ className }: GitHubActivityProps) => {
                 <ActivityCalendar
                   data={data.contributions}
                   theme={CUSTOM_THEME}
+                  colorScheme={colorScheme}
                   blockSize={CALENDAR_CONFIG.blockSize}
                   blockMargin={CALENDAR_CONFIG.blockMargin}
                   fontSize={CALENDAR_CONFIG.fontSize}
