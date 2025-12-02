@@ -9,6 +9,7 @@ import vercel from '@astrojs/vercel';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.shayhenderson.dev',
+  trailingSlash: 'always',
   adapter: vercel(),
   integrations: [
     tailwind(),
