@@ -32,3 +32,9 @@ pnpm-debug.log*
 
 # Vercel build output
 .vercel/
+
+# Claude Code
+.claude/
+
+# Cursor
+.cursor/
