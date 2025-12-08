@@ -4,244 +4,333 @@ import { Icon } from 'astro-icon/components';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
-const title = "About | Shay Henderson";
-const description = "Discover my journey from technical support to full-stack development. Learn how I approach building reliable systems that deliver measurable results.";
+const title = 'About | Shay Henderson';
+const description =
+  'Discover my journey from technical support to full-stack development. Learn how I approach building reliable systems that deliver measurable results.';
 
 const timeline = [
   {
-    year: "Sep 2022 – Present",
-    title: "QA & Support Engineer – JPG Store",
-    description: "Leading QA, support operations, and frontend development for a large-scale NFT marketplace. Led Intercom platform migration achieving 64.6% AI deflection rate and 90.2% customer satisfaction. Authored 150+ technical articles reaching 60,000+ readers annually. Maintaining 99% platform uptime on GCP and Cloudflare with sub-two-minute response times.",
-    icon: "mdi:code-braces"
+    year: 'Sep 2022 – Present',
+    title: 'QA & Support Engineer – JPG Store',
+    description:
+      'Leading QA, support operations, and frontend development for a large-scale NFT marketplace. Led Intercom platform migration achieving 64.6% AI deflection rate and 90.2% customer satisfaction. Authored 150+ technical articles reaching 60,000+ readers annually. Maintaining 99% platform uptime on GCP and Cloudflare with sub-two-minute response times.',
+    icon: 'mdi:code-braces',
   },
   {
-    year: "Apr 2025 – Aug 2025",
-    title: "Technical Writer & QA Contractor – SecurityBot",
-    description: "Led comprehensive professional rework of SecurityBot's GitBook documentation, transforming it into a production-ready knowledge base. Redesigned content architecture, rewrote all technical documentation, and performed QA testing to validate features and documentation accuracy.",
-    icon: "mdi:file-document-edit"
+    year: 'Apr 2025 – Aug 2025',
+    title: 'Technical Writer & QA Contractor – SecurityBot',
+    description:
+      "Led comprehensive professional rework of SecurityBot's GitBook documentation, transforming it into a production-ready knowledge base. Redesigned content architecture, rewrote all technical documentation, and performed QA testing to validate features and documentation accuracy.",
+    icon: 'mdi:file-document-edit',
   },
   {
-    year: "Jun 2019 - Apr 2024",
-    title: "IT Support Analyst – MacDIT",
-    description: "Delivered tier-1 to tier-3 technical support across Windows Server, Active Directory, Microsoft 365, Azure, Exchange, and SharePoint. Implemented Veeam backup solutions, used PowerShell for automation, and maintained SLA targets while supporting infrastructure projects and client migrations.",
-    icon: "mdi:server"
+    year: 'Jun 2019 - Apr 2024',
+    title: 'IT Support Analyst – MacDIT',
+    description:
+      'Delivered tier-1 to tier-3 technical support across Windows Server, Active Directory, Microsoft 365, Azure, Exchange, and SharePoint. Implemented Veeam backup solutions, used PowerShell for automation, and maintained SLA targets while supporting infrastructure projects and client migrations.',
+    icon: 'mdi:server',
   },
   {
-    year: "2018 - 2019",
-    title: "HNC – Computer Science",
-    description: "West Lothian College - Studied software fundamentals including programming, networking, database design, and operating systems. Gained foundational knowledge in infrastructure and systems management.",
-    icon: "mdi:school"
-  }
+    year: '2018 - 2019',
+    title: 'HNC – Computer Science',
+    description:
+      'West Lothian College - Studied software fundamentals including programming, networking, database design, and operating systems. Gained foundational knowledge in infrastructure and systems management.',
+    icon: 'mdi:school',
+  },
 ];
 
 const interests = [
   {
-    title: "Full-Stack Development",
-    description: "Building scalable web and mobile applications with Next.js, React, TypeScript, and Astro. Focused on performance, clean architecture, and production reliability.",
-    icon: "mdi:web"
+    title: 'Full-Stack Development',
+    description:
+      'Building scalable web and mobile applications with Next.js, React, TypeScript, and Astro. Focused on performance, clean architecture, and production reliability.',
+    icon: 'mdi:web',
   },
   {
-    title: "Cloud Infrastructure & Operations",
-    description: "Managing production systems on Google Cloud Platform and Cloudflare. Experienced in incident response, uptime optimization, infrastructure automation, and site reliability engineering.",
-    icon: "mdi:cloud"
+    title: 'Cloud Infrastructure & Operations',
+    description:
+      'Managing production systems on Google Cloud Platform and Cloudflare. Experienced in incident response, uptime optimization, infrastructure automation, and site reliability engineering.',
+    icon: 'mdi:cloud',
   },
   {
-    title: "QA & Support Engineering",
-    description: "Implementing quality assurance workflows, AI-powered support systems, and customer experience optimization. Expertise in Intercom, Linear, and support automation platforms.",
-    icon: "mdi:shield-check"
+    title: 'QA & Support Engineering',
+    description:
+      'Implementing quality assurance workflows, AI-powered support systems, and customer experience optimization. Expertise in Intercom, Linear, and support automation platforms.',
+    icon: 'mdi:shield-check',
   },
   {
-    title: "Technical Documentation",
-    description: "Authoring and maintaining comprehensive help centers and knowledge bases. Skilled in creating clear, actionable documentation that improves user experience and reduces support burden.",
-    icon: "mdi:file-document-edit"
-  }
+    title: 'Technical Documentation',
+    description:
+      'Authoring and maintaining comprehensive help centers and knowledge bases. Skilled in creating clear, actionable documentation that improves user experience and reduces support burden.',
+    icon: 'mdi:file-document-edit',
+  },
 ];
 ---
 
 <Layout title={title} description={description}>
   <!-- Breadcrumb Schema -->
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.shayhenderson.dev"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "About",
-        "item": "https://www.shayhenderson.dev/about"
-      }
-    ]
-  })} />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.shayhenderson.dev',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'About',
+          item: 'https://www.shayhenderson.dev/about',
+        },
+      ],
+    })}
+  />
 
   <!-- ProfilePage Schema -->
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "ProfilePage",
-    "mainEntity": {
-      "@type": "Person",
-      "name": "Shay Henderson",
-      "jobTitle": "Software and Infrastructure Engineer",
-      "description": "Software and Infrastructure Engineer building scalable systems across web, mobile, and cloud platforms, with a focus on reliability, performance, and measurable impact.",
-      "url": "https://www.shayhenderson.dev",
-      "sameAs": [
-        "https://github.com/HendoBuilds",
-        "https://www.linkedin.com/in/shay-henderson/"
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'ProfilePage',
+      mainEntity: {
+        '@type': 'Person',
+        name: 'Shay Henderson',
+        jobTitle: 'Software and Infrastructure Engineer',
+        description:
+          'Software and Infrastructure Engineer building scalable systems across web, mobile, and cloud platforms, with a focus on reliability, performance, and measurable impact.',
+        url: 'https://www.shayhenderson.dev',
+        sameAs: [
+          'https://github.com/HendoBuilds',
+          'https://www.linkedin.com/in/shay-henderson/',
+        ],
+        alumniOf: {
+          '@type': 'CollegeOrUniversity',
+          name: 'West Lothian College',
+        },
+        knowsAbout: [
+          'Software Development',
+          'Cloud Infrastructure',
+          'Quality Assurance',
+          'Technical Support',
+          'Full-Stack Development',
+          'React',
+          'Next.js',
+          'TypeScript',
+          'GCP',
+          'Cloudflare',
+        ],
+      },
+      about:
+        'Professional background and experience of Shay Henderson, including career timeline, skills, and areas of expertise.',
+    })}
+  />
+
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'What services does Shay Henderson offer?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Full-stack development, cloud infrastructure management, QA engineering, technical documentation, and support engineering. Specializing in building scalable web and mobile applications with modern frameworks.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'What technologies does Shay Henderson specialize in?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'React, Next.js, TypeScript, Astro, Google Cloud Platform (GCP), Cloudflare, Azure, Vercel, and DevOps tools. Experienced in both frontend and backend development with cloud infrastructure.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Where is Shay Henderson based?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Shay Henderson is based in Scotland, United Kingdom, and works with clients globally on software development and infrastructure projects.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: "What is Shay Henderson's professional background?",
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: '6+ years of experience in software development, starting in technical support and QA, progressing to full-stack development and infrastructure engineering. Experience includes work with JPG Store, SecurityBot, and various cloud infrastructure projects.',
+          },
+        },
       ],
-      "alumniOf": {
-        "@type": "CollegeOrUniversity",
-        "name": "West Lothian College"
-      },
-      "knowsAbout": [
-        "Software Development",
-        "Cloud Infrastructure",
-        "Quality Assurance",
-        "Technical Support",
-        "Full-Stack Development",
-        "React",
-        "Next.js",
-        "TypeScript",
-        "GCP",
-        "Cloudflare"
-      ]
-    },
-    "about": "Professional background and experience of Shay Henderson, including career timeline, skills, and areas of expertise."
-  })} />
+    })}
+  />
 
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What services does Shay Henderson offer?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Full-stack development, cloud infrastructure management, QA engineering, technical documentation, and support engineering. Specializing in building scalable web and mobile applications with modern frameworks."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What technologies does Shay Henderson specialize in?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "React, Next.js, TypeScript, Astro, Google Cloud Platform (GCP), Cloudflare, Azure, Vercel, and DevOps tools. Experienced in both frontend and backend development with cloud infrastructure."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Where is Shay Henderson based?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Shay Henderson is based in Scotland, United Kingdom, and works with clients globally on software development and infrastructure projects."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is Shay Henderson's professional background?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "6+ years of experience in software development, starting in technical support and QA, progressing to full-stack development and infrastructure engineering. Experience includes work with JPG Store, SecurityBot, and various cloud infrastructure projects."
-        }
-      }
-    ]
-  })} />
-
-  <div class="container mx-auto px-6 py-8 max-w-4xl">
+  <div class="container mx-auto max-w-4xl px-6 py-8">
     <!-- Header -->
-    <div class="text-center mb-8 md:mb-12">
-      <h1 class="text-4xl font-bold text-foreground mb-4">About Me</h1>
-      <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
-        Software and Infrastructure Engineer building scalable systems across web, mobile, and cloud platforms, with a focus on reliability, performance, and measurable impact.
+    <div class="mb-8 text-center md:mb-12">
+      <h1 class="mb-4 text-4xl font-bold text-foreground">About Me</h1>
+      <p class="mx-auto max-w-3xl text-xl text-muted-foreground">
+        Software and Infrastructure Engineer building scalable systems across
+        web, mobile, and cloud platforms, with a focus on reliability,
+        performance, and measurable impact.
       </p>
     </div>
 
     <!-- Main Content -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-12">
       <!-- Left Column - Main Story -->
       <div class="lg:col-span-2">
         <section class="mb-8 md:mb-12">
-          <h2 class="text-2xl font-semibold text-foreground mb-4 md:mb-6 border-b pb-2">
+          <h2
+            class="mb-4 border-b pb-2 text-2xl font-semibold text-foreground md:mb-6"
+          >
             My Journey
           </h2>
-          <div class="space-y-6 text-muted-foreground leading-relaxed">
+          <div class="space-y-6 leading-relaxed text-muted-foreground">
             <p>
-              I'm Shay Henderson, a Software and Infrastructure Engineer with more than six years of experience spanning software development, cloud infrastructure, quality assurance, and technical support operations.
+              I'm Shay Henderson, a Software and Infrastructure Engineer with
+              more than six years of experience spanning software development,
+              cloud infrastructure, quality assurance, and technical support
+              operations.
             </p>
             <p>
-              My journey began in enterprise IT, where I delivered tier-1 through tier-3 support for complex Windows and cloud environments. I deployed servers, managed Active Directory infrastructure, implemented backup and disaster recovery solutions with Veeam, and automated system administration tasks using PowerShell. This foundation taught me how technology systems interconnect and how to solve critical issues under pressure.
+              My journey began in enterprise IT, where I delivered tier-1
+              through tier-3 support for complex Windows and cloud environments.
+              I deployed servers, managed Active Directory infrastructure,
+              implemented backup and disaster recovery solutions with Veeam, and
+              automated system administration tasks using PowerShell. This
+              foundation taught me how technology systems interconnect and how
+              to solve critical issues under pressure.
             </p>
             <p>
-              Since 2022, I've been working at JPG Store, a large-scale NFT marketplace serving hundreds of thousands of users across web and mobile platforms. In this role, I've led the migration from a custom ticketing system to a fully integrated Intercom platform with AI-powered automation that achieved a 64.6% deflection rate while maintaining 90.2% customer satisfaction.
+              Since 2022, I've been working at JPG Store, a large-scale NFT
+              marketplace serving hundreds of thousands of users across web and
+              mobile platforms. In this role, I've led the migration from a
+              custom ticketing system to a fully integrated Intercom platform
+              with AI-powered automation that achieved a 64.6% deflection rate
+              while maintaining 90.2% customer satisfaction.
             </p>
             <p>
-              I've authored and maintained over 150 technical and support articles that reach more than 60,000 unique readers each year. I contribute to the Next.js frontend development, oversee QA workflows, and help maintain 99% platform uptime across Google Cloud Platform and Cloudflare infrastructure with sub-two-minute average response times.
+              I've authored and maintained over 150 technical and support
+              articles that reach more than 60,000 unique readers each year. I
+              contribute to the Next.js frontend development, oversee QA
+              workflows, and help maintain 99% platform uptime across Google
+              Cloud Platform and Cloudflare infrastructure with sub-two-minute
+              average response times.
             </p>
             <p>
-              Most recently, I contracted with SecurityBot to lead a comprehensive professional rework of their GitBook documentation, transforming it from a hobbyist reference into a structured, production-ready knowledge base.
+              Most recently, I contracted with SecurityBot to lead a
+              comprehensive professional rework of their GitBook documentation,
+              transforming it from a hobbyist reference into a structured,
+              production-ready knowledge base.
             </p>
             <p>
-              I'm skilled at bridging technical, operational, and customer-facing domains to deliver reliable, high-quality outcomes. Whether it's building scalable web applications, managing cloud infrastructure, or creating comprehensive documentation, my focus is on measurable impact, performance, and long-term sustainability.
+              I'm skilled at bridging technical, operational, and
+              customer-facing domains to deliver reliable, high-quality
+              outcomes. Whether it's building scalable web applications,
+              managing cloud infrastructure, or creating comprehensive
+              documentation, my focus is on measurable impact, performance, and
+              long-term sustainability.
             </p>
           </div>
         </section>
 
         <!-- Timeline -->
         <section class="mb-8 md:mb-12">
-          <h2 class="text-2xl font-semibold text-foreground mb-4 md:mb-6 border-b pb-2">
+          <h2
+            class="mb-4 border-b pb-2 text-2xl font-semibold text-foreground md:mb-6"
+          >
             Professional Timeline
           </h2>
           <div class="space-y-6">
-            {timeline.map((item) => (
-              <div class="flex gap-3 md:gap-6">
-                <div class="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                  <Icon name={item.icon} class="text-xl md:text-2xl text-primary" />
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="flex flex-col items-start md:flex-row md:items-center gap-2 md:gap-3 mb-2">
-                    <h3 class="text-base md:text-lg font-semibold text-foreground break-words">{item.title}</h3>
-                    <Badge variant="secondary" class="self-start md:self-auto text-xs w-fit whitespace-nowrap">{item.year}</Badge>
+            {
+              timeline.map((item) => (
+                <div class="flex gap-3 md:gap-6">
+                  <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 md:h-12 md:w-12">
+                    <Icon
+                      name={item.icon}
+                      class="text-xl text-primary md:text-2xl"
+                    />
                   </div>
-                  <p class="text-sm md:text-base text-muted-foreground">{item.description}</p>
+                  <div class="min-w-0 flex-1">
+                    <div class="mb-2 flex flex-col items-start gap-2 md:flex-row md:items-center md:gap-3">
+                      <h3 class="break-words text-base font-semibold text-foreground md:text-lg">
+                        {item.title}
+                      </h3>
+                      <Badge
+                        variant="secondary"
+                        class="w-fit self-start whitespace-nowrap text-xs md:self-auto"
+                      >
+                        {item.year}
+                      </Badge>
+                    </div>
+                    <p class="text-sm text-muted-foreground md:text-base">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            }
           </div>
         </section>
 
         <!-- Approach -->
         <section class="mb-8 md:mb-12">
-          <h2 class="text-2xl font-semibold text-foreground mb-4 md:mb-6 border-b pb-2">
+          <h2
+            class="mb-4 border-b pb-2 text-2xl font-semibold text-foreground md:mb-6"
+          >
             My Approach
           </h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-card p-6 rounded-lg border">
-              <h3 class="text-lg font-semibold text-foreground mb-3">Problem-Solving from the Ground Up</h3>
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div class="rounded-lg border bg-card p-6">
+              <h3 class="mb-3 text-lg font-semibold text-foreground">
+                Problem-Solving from the Ground Up
+              </h3>
               <p class="text-muted-foreground">
-                Years of frontline technical support taught me to identify root causes quickly and build solutions that address real, recurring issues. Every project starts with understanding the environment, the users, and the problem itself.
+                Years of frontline technical support taught me to identify root
+                causes quickly and build solutions that address real, recurring
+                issues. Every project starts with understanding the environment,
+                the users, and the problem itself.
               </p>
             </div>
-            <div class="bg-card p-6 rounded-lg border">
-              <h3 class="text-lg font-semibold text-foreground mb-3">Performance with Practicality</h3>
+            <div class="rounded-lg border bg-card p-6">
+              <h3 class="mb-3 text-lg font-semibold text-foreground">
+                Performance with Practicality
+              </h3>
               <p class="text-muted-foreground">
-                I build applications that are not only optimized for speed and reliability, but also grounded in real-world infrastructure constraints. From UI responsiveness to backend stability, I focus on practical, scalable outcomes.
+                I build applications that are not only optimized for speed and
+                reliability, but also grounded in real-world infrastructure
+                constraints. From UI responsiveness to backend stability, I
+                focus on practical, scalable outcomes.
               </p>
             </div>
-            <div class="bg-card p-6 rounded-lg border">
-              <h3 class="text-lg font-semibold text-foreground mb-3">Sustainable Code & Documentation</h3>
+            <div class="rounded-lg border bg-card p-6">
+              <h3 class="mb-3 text-lg font-semibold text-foreground">
+                Sustainable Code & Documentation
+              </h3>
               <p class="text-muted-foreground">
-                I care about writing clean, maintainable code. But also about documenting it clearly. Whether it's an internal tool or a public-facing platform, I prioritize long-term readability and ease of handoff.
+                I care about writing clean, maintainable code. But also about
+                documenting it clearly. Whether it's an internal tool or a
+                public-facing platform, I prioritize long-term readability and
+                ease of handoff.
               </p>
             </div>
-            <div class="bg-card p-6 rounded-lg border">
-              <h3 class="text-lg font-semibold text-foreground mb-3">Support-Oriented Design Thinking</h3>
+            <div class="rounded-lg border bg-card p-6">
+              <h3 class="mb-3 text-lg font-semibold text-foreground">
+                Support-Oriented Design Thinking
+              </h3>
               <p class="text-muted-foreground">
-                I bring a user support mindset to development. My decisions are shaped by how real users interact with systems, making sure interfaces are intuitive, accessible, and backed by helpful support when needed.
+                I bring a user support mindset to development. My decisions are
+                shaped by how real users interact with systems, making sure
+                interfaces are intuitive, accessible, and backed by helpful
+                support when needed.
               </p>
             </div>
           </div>
@@ -252,23 +341,33 @@ const interests = [
       <div class="lg:col-span-1">
         <!-- Quick Facts -->
         <section class="mb-8">
-          <h3 class="text-xl font-semibold text-foreground mb-4">Quick Facts</h3>
-          <div class="bg-card p-6 rounded-lg border">
+          <h3 class="mb-4 text-xl font-semibold text-foreground">
+            Quick Facts
+          </h3>
+          <div class="rounded-lg border bg-card p-6">
             <div class="space-y-4">
               <div class="flex items-center gap-3">
-                <Icon name="mdi:map-marker" class="text-muted-foreground text-lg" />
+                <Icon
+                  name="mdi:map-marker"
+                  class="text-lg text-muted-foreground"
+                />
                 <span class="text-muted-foreground">Scotland, UK</span>
               </div>
               <div class="flex items-center gap-3">
-                <Icon name="mdi:school" class="text-muted-foreground text-lg" />
+                <Icon name="mdi:school" class="text-lg text-muted-foreground" />
                 <span class="text-muted-foreground">HNC Computer Science</span>
               </div>
               <div class="flex items-center gap-3">
-                <Icon name="mdi:briefcase" class="text-muted-foreground text-lg" />
-                <span class="text-muted-foreground">Technical Support Background</span>
+                <Icon
+                  name="mdi:briefcase"
+                  class="text-lg text-muted-foreground"
+                />
+                <span class="text-muted-foreground"
+                  >Technical Support Background</span
+                >
               </div>
               <div class="flex items-center gap-3">
-                <Icon name="mdi:heart" class="text-muted-foreground text-lg" />
+                <Icon name="mdi:heart" class="text-lg text-muted-foreground" />
                 <span class="text-muted-foreground">Problem Solver</span>
               </div>
             </div>
@@ -277,36 +376,51 @@ const interests = [
 
         <!-- Interests -->
         <section class="mb-8">
-          <h3 class="text-xl font-semibold text-foreground mb-4">Areas of Interest</h3>
+          <h3 class="mb-4 text-xl font-semibold text-foreground">
+            Areas of Interest
+          </h3>
           <div class="space-y-3">
-            {interests.map((interest) => (
-              <div class="bg-card p-4 rounded-lg border">
-                <div class="flex items-center gap-3 mb-2">
-                  <Icon name={interest.icon} class="text-primary text-lg" />
-                  <h4 class="font-medium text-foreground">{interest.title}</h4>
+            {
+              interests.map((interest) => (
+                <div class="rounded-lg border bg-card p-4">
+                  <div class="mb-2 flex items-center gap-3">
+                    <Icon name={interest.icon} class="text-lg text-primary" />
+                    <h4 class="font-medium text-foreground">
+                      {interest.title}
+                    </h4>
+                  </div>
+                  <p class="text-sm text-muted-foreground">
+                    {interest.description}
+                  </p>
                 </div>
-                <p class="text-sm text-muted-foreground">{interest.description}</p>
-              </div>
-            ))}
+              ))
+            }
           </div>
         </section>
 
         <!-- Contact CTA -->
-        <section class="bg-primary/10 p-6 rounded-lg border border-primary/20">
-          <h3 class="text-lg font-semibold text-foreground mb-3">Let's Work Together</h3>
-          <p class="text-muted-foreground mb-4 text-sm">
-            Have a project in mind? I'd love to hear about it and see how we can bring your ideas to life.
+        <section class="rounded-lg border border-primary/20 bg-primary/10 p-6">
+          <h3 class="mb-3 text-lg font-semibold text-foreground">
+            Let's Work Together
+          </h3>
+          <p class="mb-4 text-sm text-muted-foreground">
+            Have a project in mind? I'd love to hear about it and see how we can
+            bring your ideas to life.
           </p>
           <div class="space-y-2">
             <a href="mailto:contact@shayhenderson.dev">
               <Button variant="link" className="px-0">
-                <Icon name="mdi:email" class="text-lg mr-2" />
+                <Icon name="mdi:email" class="mr-2 text-lg" />
                 Get in Touch
               </Button>
             </a>
-            <a href="https://github.com/HendoBuilds" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://github.com/HendoBuilds"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button variant="link" className="px-0">
-                <Icon name="mdi:github" class="text-lg mr-2" />
+                <Icon name="mdi:github" class="mr-2 text-lg" />
                 View GitHub
               </Button>
             </a>
@@ -315,4 +429,4 @@ const interests = [
       </div>
     </div>
   </div>
-</Layout> 
+</Layout>

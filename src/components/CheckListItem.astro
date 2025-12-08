@@ -9,6 +9,6 @@ const { class: className } = Astro.props;
 ---
 
 <li class:list={['flex items-center gap-2', className]}>
-  <Icon name="mdi:check-circle" class="text-primary text-lg" />
+  <Icon name="mdi:check-circle" class="text-lg text-primary" />
   <slot />
 </li>

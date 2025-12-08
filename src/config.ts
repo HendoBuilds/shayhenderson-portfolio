@@ -4,25 +4,26 @@
  */
 
 export const SITE_CONFIG = {
-  name: "Shay Henderson",
-  title: "Shay Henderson | Software and Infrastructure Engineer",
-  description: "Software & Infrastructure Engineer with 6+ years building scalable web, mobile, and cloud solutions. Specializing in development, QA, DevOps, and support.",
-  url: "https://www.shayhenderson.dev",
-  email: "contact@shayhenderson.dev",
+  name: 'Shay Henderson',
+  title: 'Shay Henderson | Software and Infrastructure Engineer',
+  description:
+    'Software & Infrastructure Engineer with 6+ years building scalable web, mobile, and cloud solutions. Specializing in development, QA, DevOps, and support.',
+  url: 'https://www.shayhenderson.dev',
+  email: 'contact@shayhenderson.dev',
 
   social: {
     github: {
-      username: "HendoBuilds",
-      url: "https://github.com/HendoBuilds"
+      username: 'HendoBuilds',
+      url: 'https://github.com/HendoBuilds',
     },
     linkedin: {
-      username: "shay-henderson",
-      url: "https://www.linkedin.com/in/shay-henderson/"
-    }
+      username: 'shay-henderson',
+      url: 'https://www.linkedin.com/in/shay-henderson/',
+    },
   },
 
   location: {
-    city: "Scotland",
-    country: "UK"
-  }
+    city: 'Scotland',
+    country: 'UK',
+  },
 } as const;

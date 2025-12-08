@@ -4,20 +4,42 @@ import { Icon } from 'astro-icon/components';
 const year = new Date().getFullYear();
 ---
 
-<footer class="text-foreground text-sm py-6 mt-12 border-t -mx-4 md:-mx-6 lg:-mx-8 px-4 md:px-6 lg:px-8">
-  <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-    <div class="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-center md:text-left">
+<footer
+  class="-mx-4 mt-12 border-t px-4 py-6 text-sm text-foreground md:-mx-6 md:px-6 lg:-mx-8 lg:px-8"
+>
+  <div
+    class="mx-auto flex max-w-4xl flex-col items-center justify-between gap-4 md:flex-row"
+  >
+    <div
+      class="flex flex-col items-center gap-2 text-center md:flex-row md:gap-4 md:text-left"
+    >
       <p>© {year} Shay Henderson. All rights reserved.</p>
-      <a href="/privacy/" class="hover:text-primary transition">Privacy</a>
+      <a href="/privacy/" class="transition hover:text-primary">Privacy</a>
     </div>
     <div class="flex gap-4">
-      <a href="https://www.linkedin.com/in/shay-henderson/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="hover:text-primary transition p-2 min-h-[44px] min-w-[44px] flex items-center justify-center">
+      <a
+        href="https://www.linkedin.com/in/shay-henderson/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+        class="flex min-h-[44px] min-w-[44px] items-center justify-center p-2 transition hover:text-primary"
+      >
         <Icon name="mdi:linkedin" class="text-2xl" aria-hidden="true" />
       </a>
-      <a href="https://github.com/HendoBuilds" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="hover:text-primary transition p-2 min-h-[44px] min-w-[44px] flex items-center justify-center">
+      <a
+        href="https://github.com/HendoBuilds"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub"
+        class="flex min-h-[44px] min-w-[44px] items-center justify-center p-2 transition hover:text-primary"
+      >
         <Icon name="mdi:github" class="text-2xl" aria-hidden="true" />
       </a>
-      <a href="mailto:contact@shayhenderson.dev" aria-label="Email" class="hover:text-primary transition p-2 min-h-[44px] min-w-[44px] flex items-center justify-center">
+      <a
+        href="mailto:contact@shayhenderson.dev"
+        aria-label="Email"
+        class="flex min-h-[44px] min-w-[44px] items-center justify-center p-2 transition hover:text-primary"
+      >
         <Icon name="mdi:email" class="text-2xl" aria-hidden="true" />
       </a>
     </div>

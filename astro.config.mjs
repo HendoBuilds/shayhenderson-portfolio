@@ -38,12 +38,12 @@ export default defineConfig({
         // Add lastmod date (current build time as ISO string)
         item.lastmod = new Date().toISOString();
         return item;
-      }
+      },
     }),
-    react()
+    react(),
   ],
   build: {
-    inlineStylesheets: 'auto'
+    inlineStylesheets: 'auto',
   },
   vite: {
     build: {
@@ -53,13 +53,18 @@ export default defineConfig({
         output: {
           manualChunks: {
             'react-vendor': ['react', 'react-dom'],
-            'ui-vendor': ['@radix-ui/react-slot', 'class-variance-authority', 'clsx', 'tailwind-merge']
-          }
-        }
-      }
+            'ui-vendor': [
+              '@radix-ui/react-slot',
+              'class-variance-authority',
+              'clsx',
+              'tailwind-merge',
+            ],
+          },
+        },
+      },
     },
     ssr: {
-      noExternal: ['@radix-ui/react-slot']
-    }
-  }
+      noExternal: ['@radix-ui/react-slot'],
+    },
+  },
 });

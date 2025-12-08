@@ -3,26 +3,32 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/hero.astro';
 import About from '../components/about.astro';
 import Services from '../components/services.astro';
-import { GitHubActivity } from "@/components/GitHubActivity";
+import { GitHubActivity } from '@/components/GitHubActivity';
 
-const title = "Shay Henderson | Software and Infrastructure Engineer";
-const description = "Shay Henderson - Software & Infrastructure Engineer. 6+ years building scalable web applications, cloud infrastructure, and technical documentation.";
+const title = 'Shay Henderson | Software and Infrastructure Engineer';
+const description =
+  'Shay Henderson - Software & Infrastructure Engineer. 6+ years building scalable web applications, cloud infrastructure, and technical documentation.';
 
 const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Shay Henderson Portfolio",
-  "url": "https://www.shayhenderson.dev",
-  "description": "Software and Infrastructure Engineer with 6+ years of experience in software development, cloud infrastructure, QA, and technical support.",
-  "author": {
-    "@type": "Person",
-    "name": "Shay Henderson"
-  }
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Shay Henderson Portfolio',
+  url: 'https://www.shayhenderson.dev',
+  description:
+    'Software and Infrastructure Engineer with 6+ years of experience in software development, cloud infrastructure, QA, and technical support.',
+  author: {
+    '@type': 'Person',
+    name: 'Shay Henderson',
+  },
 };
 ---
 
 <Layout title={title} description={description}>
-  <script type="application/ld+json" slot="head" set:html={JSON.stringify(websiteSchema)} />
+  <script
+    type="application/ld+json"
+    slot="head"
+    set:html={JSON.stringify(websiteSchema)}
+  />
 
   <Hero />
   <div class="space-y-8 md:space-y-12">
@@ -30,4 +36,4 @@ const websiteSchema = {
     <Services />
     <GitHubActivity client:visible />
   </div>
-</Layout> 
+</Layout>

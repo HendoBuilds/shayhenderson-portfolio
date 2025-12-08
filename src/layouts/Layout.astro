@@ -1,9 +1,9 @@
 ---
-import Nav from "../components/nav.astro";
-import Footer from "../components/footer.astro";
+import Nav from '../components/nav.astro';
+import Footer from '../components/footer.astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
-import "../styles/global.css";
-import ThemeToggle from "../components/ThemeToggle.astro";
+import '../styles/global.css';
+import ThemeToggle from '../components/ThemeToggle.astro';
 
 interface Props {
   title?: string;
@@ -11,37 +11,52 @@ interface Props {
 }
 
 const {
-  title = "Shay Henderson | Software and Infrastructure Engineer",
-  description = "Software & Infrastructure Engineer with 6+ years building scalable web, mobile, and cloud solutions. Specializing in development, QA, DevOps, and support."
+  title = 'Shay Henderson | Software and Infrastructure Engineer',
+  description = 'Software & Infrastructure Engineer with 6+ years building scalable web, mobile, and cloud solutions. Specializing in development, QA, DevOps, and support.',
 } = Astro.props;
 
 // Site URL and canonical URL setup
-const siteUrl = "https://www.shayhenderson.dev";
+const siteUrl = 'https://www.shayhenderson.dev';
 const canonicalURL = new URL(Astro.url.pathname, siteUrl).href;
 const image = `${siteUrl}/shay-portfolio.webp`;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="overflow-x-hidden">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="preconnect" href="https://va.vercel-scripts.com" crossorigin />
-    <link rel="preconnect" href="https://github-contributions-api.jogruber.de" crossorigin />
+    <link
+      rel="preconnect"
+      href="https://github-contributions-api.jogruber.de"
+      crossorigin
+    />
 
     <link rel="icon" type="image/svg+xml" href="/logo-light.svg" id="favicon" />
     <meta name="generator" content={Astro.generator} />
 
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#000000"
+      media="(prefers-color-scheme: dark)"
+    />
 
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Shay Henderson" />
     <meta name="robots" content="index, follow" />
-    <meta name="keywords" content="software engineer, infrastructure engineer, cloud engineer, QA engineer, full-stack developer, React, Next.js, TypeScript, GCP, Cloudflare, Google Cloud Platform, site reliability, technical support, Shay Henderson, portfolio" />
+    <meta
+      name="keywords"
+      content="software engineer, infrastructure engineer, cloud engineer, QA engineer, full-stack developer, React, Next.js, TypeScript, GCP, Cloudflare, Google Cloud Platform, site reliability, technical support, Shay Henderson, portfolio"
+    />
     <meta name="language" content="en" />
     <meta name="geo.region" content="GB-SCT" />
     <meta name="geo.placename" content="Scotland" />
@@ -61,64 +76,110 @@ const image = `${siteUrl}/shay-portfolio.webp`;
     <meta property="og:locale" content="en_US" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Shay Henderson - Web Developer Portfolio" />
+    <meta
+      property="og:image:alt"
+      content="Shay Henderson - Web Developer Portfolio"
+    />
     <meta property="og:image:type" content="image/webp" />
     <meta property="og:author" content="Shay Henderson" />
     <meta property="og:section" content="Technology" />
-    <meta property="og:tag" content="web development, portfolio, React, Next.js, Astro" />
+    <meta
+      property="og:tag"
+      content="web development, portfolio, React, Next.js, Astro"
+    />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
-    <meta name="twitter:image:alt" content="Shay Henderson - Web Developer Portfolio" />
+    <meta
+      name="twitter:image:alt"
+      content="Shay Henderson - Web Developer Portfolio"
+    />
     <meta name="twitter:domain" content="www.shayhenderson.dev" />
 
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Shay Henderson",
-      "jobTitle": "Software and Infrastructure Engineer",
-      "url": siteUrl,
-      "sameAs": [
-        "https://github.com/HendoBuilds",
-        "https://www.linkedin.com/in/shay-henderson/"
-      ],
-      "knowsAbout": [
-        "React",
-        "TypeScript",
-        "Next.js",
-        "Astro",
-        "Google Cloud Platform",
-        "Cloudflare",
-        "Site Reliability Engineering",
-        "QA Engineering",
-        "Infrastructure Engineering"
-      ],
-      "description": description
-    })} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: 'Shay Henderson',
+        jobTitle: 'Software and Infrastructure Engineer',
+        url: siteUrl,
+        sameAs: [
+          'https://github.com/HendoBuilds',
+          'https://www.linkedin.com/in/shay-henderson/',
+        ],
+        knowsAbout: [
+          'React',
+          'TypeScript',
+          'Next.js',
+          'Astro',
+          'Google Cloud Platform',
+          'Cloudflare',
+          'Site Reliability Engineering',
+          'QA Engineering',
+          'Infrastructure Engineering',
+        ],
+        description: description,
+      })}
+    />
 
     <SpeedInsights />
   </head>
-  <body class="min-h-screen font-sans flex flex-col overflow-x-hidden">
+  <body class="flex min-h-screen flex-col overflow-x-hidden font-sans">
     <!-- Skip to main content link for accessibility -->
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:shadow-lg">Skip to main content</a>
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus:shadow-lg"
+      >Skip to main content</a
+    >
 
-    <div class="w-full max-w-4xl mx-auto bg-card shadow-lg md:shadow-2xl py-0 px-4 md:px-6 lg:px-8 flex flex-col min-h-screen md:border-l md:border-r box-border">
-      <div class="flex items-center justify-between w-full mt-2 gap-1.5 md:gap-3">
-        <div class="w-9 md:w-11 flex justify-start flex-shrink-0">
-          <a href="/" aria-label="Back to home" class="min-h-[44px] min-w-[44px] flex items-center justify-center">
-            <img id="logo-light" src="/logo-light.svg" alt="Site logo" width="44" height="44" loading="eager" fetchpriority="high" class="w-8 h-8 md:w-9 md:h-9 rounded-full bg-background/80 backdrop-blur-md shadow-lg border object-cover" />
-            <img id="logo-dark" src="/logo-dark.svg" alt="Site logo" width="44" height="44" loading="eager" fetchpriority="high" class="w-8 h-8 md:w-9 md:h-9 rounded-full bg-background/80 backdrop-blur-md shadow-lg border object-cover hidden" />
+    <div
+      class="mx-auto box-border flex min-h-screen w-full max-w-4xl flex-col bg-card px-4 py-0 shadow-lg md:border-l md:border-r md:px-6 md:shadow-2xl lg:px-8"
+    >
+      <div
+        class="mt-2 flex w-full items-center justify-between gap-1.5 md:gap-3"
+      >
+        <div class="flex w-9 flex-shrink-0 justify-start md:w-11">
+          <a
+            href="/"
+            aria-label="Back to home"
+            class="flex min-h-[44px] min-w-[44px] items-center justify-center"
+          >
+            <img
+              id="logo-light"
+              src="/logo-light.svg"
+              alt="Site logo"
+              width="44"
+              height="44"
+              loading="eager"
+              fetchpriority="high"
+              class="h-8 w-8 rounded-full border bg-background/80 object-cover shadow-lg backdrop-blur-md md:h-9 md:w-9"
+            />
+            <img
+              id="logo-dark"
+              src="/logo-dark.svg"
+              alt="Site logo"
+              width="44"
+              height="44"
+              loading="eager"
+              fetchpriority="high"
+              class="hidden h-8 w-8 rounded-full border bg-background/80 object-cover shadow-lg backdrop-blur-md md:h-9 md:w-9"
+            />
           </a>
         </div>
-        <div class="flex-1 flex justify-center min-w-0">
-          <div class="bg-background/80 rounded-full shadow-lg backdrop-blur-md border flex items-center max-w-full">
+        <div class="flex min-w-0 flex-1 justify-center">
+          <div
+            class="flex max-w-full items-center rounded-full border bg-background/80 shadow-lg backdrop-blur-md"
+          >
             <Nav class="m-0" />
           </div>
         </div>
-        <div class="w-9 md:w-11 flex justify-end flex-shrink-0">
-          <div class="bg-background/80 rounded-full shadow-lg backdrop-blur-md border flex items-center">
+        <div class="flex w-9 flex-shrink-0 justify-end md:w-11">
+          <div
+            class="flex items-center rounded-full border bg-background/80 shadow-lg backdrop-blur-md"
+          >
             <ThemeToggle />
           </div>
         </div>
@@ -148,7 +209,10 @@ const image = `${siteUrl}/shay-portfolio.webp`;
       document.addEventListener('DOMContentLoaded', updateTheme);
 
       const observer = new MutationObserver(updateTheme);
-      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class'],
+      });
     </script>
   </body>
 </html>

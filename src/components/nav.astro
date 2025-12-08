@@ -1,52 +1,92 @@
 <nav aria-label="Main navigation" class="relative">
   <button
     id="mobile-menu-button"
-    class="md:hidden p-2 rounded-full hover:bg-foreground/10 transition-all duration-300"
+    class="rounded-full p-2 transition-all duration-300 hover:bg-foreground/10 md:hidden"
     aria-label="Toggle menu"
     aria-expanded="false"
     aria-controls="mobile-menu"
   >
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path id="hamburger-top" class="transition-all duration-300 origin-center" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16"/>
-      <path id="hamburger-middle" class="transition-all duration-300" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12h16"/>
-      <path id="hamburger-bottom" class="transition-all duration-300 origin-center" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 18h16"/>
+    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path
+        id="hamburger-top"
+        class="origin-center transition-all duration-300"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 6h16"></path>
+      <path
+        id="hamburger-middle"
+        class="transition-all duration-300"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 12h16"></path>
+      <path
+        id="hamburger-bottom"
+        class="origin-center transition-all duration-300"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 18h16"></path>
     </svg>
   </button>
 
-  <ul class="hidden md:flex gap-2 lg:gap-3 px-2.5 lg:px-4 py-0.5 rounded-full">
-    <li><a href="/about/" class="nav-link font-normal text-sm text-foreground transition px-2 lg:px-2.5 py-1 rounded-full hover:bg-foreground/10 hover:shadow-inner min-h-[44px] flex items-center">About</a></li>
-    <li><a href="/projects/" class="nav-link font-normal text-sm text-foreground transition px-2 lg:px-2.5 py-1 rounded-full hover:bg-foreground/10 hover:shadow-inner min-h-[44px] flex items-center">Projects</a></li>
-    <li><a href="/cv/" class="nav-link font-normal text-sm text-foreground transition px-2 lg:px-2.5 py-1 rounded-full hover:bg-foreground/10 hover:shadow-inner min-h-[44px] flex items-center">CV</a></li>
+  <ul class="hidden gap-2 rounded-full px-2.5 py-0.5 md:flex lg:gap-3 lg:px-4">
+    <li>
+      <a
+        href="/about/"
+        class="nav-link flex min-h-[44px] items-center rounded-full px-2 py-1 text-sm font-normal text-foreground transition hover:bg-foreground/10 hover:shadow-inner lg:px-2.5"
+        >About</a
+      >
+    </li>
+    <li>
+      <a
+        href="/projects/"
+        class="nav-link flex min-h-[44px] items-center rounded-full px-2 py-1 text-sm font-normal text-foreground transition hover:bg-foreground/10 hover:shadow-inner lg:px-2.5"
+        >Projects</a
+      >
+    </li>
+    <li>
+      <a
+        href="/cv/"
+        class="nav-link flex min-h-[44px] items-center rounded-full px-2 py-1 text-sm font-normal text-foreground transition hover:bg-foreground/10 hover:shadow-inner lg:px-2.5"
+        >CV</a
+      >
+    </li>
   </ul>
 
   <div
     id="mobile-backdrop"
-    class="md:hidden fixed inset-0 bg-black/20 backdrop-blur-sm -z-10 opacity-0 pointer-events-none transition-opacity duration-200"
+    class="pointer-events-none fixed inset-0 -z-10 bg-black/20 opacity-0 backdrop-blur-sm transition-opacity duration-200 md:hidden"
     aria-hidden="true"
-  ></div>
+  >
+  </div>
 
   <div
     id="mobile-menu"
-    class="md:hidden absolute top-full right-0 mt-2 min-w-[12rem] bg-background/95 backdrop-blur-md rounded-lg shadow-lg border opacity-0 scale-95 pointer-events-none transition-all duration-200 origin-top-right"
+    class="pointer-events-none absolute right-0 top-full mt-2 min-w-[12rem] origin-top-right scale-95 rounded-lg border bg-background/95 opacity-0 shadow-lg backdrop-blur-md transition-all duration-200 md:hidden"
   >
-    <ul class="p-2 space-y-1">
+    <ul class="space-y-1 p-2">
       <li>
         <a
           href="/about/"
-          class="nav-link-mobile block px-3 py-2 font-normal text-sm text-foreground hover:bg-foreground/10 transition-all duration-150 min-h-[44px] flex items-center rounded-lg hover:scale-[1.02]"
-        >About</a>
+          class="nav-link-mobile block flex min-h-[44px] items-center rounded-lg px-3 py-2 text-sm font-normal text-foreground transition-all duration-150 hover:scale-[1.02] hover:bg-foreground/10"
+          >About</a
+        >
       </li>
       <li>
         <a
           href="/projects/"
-          class="nav-link-mobile block px-3 py-2 font-normal text-sm text-foreground hover:bg-foreground/10 transition-all duration-150 min-h-[44px] flex items-center rounded-lg hover:scale-[1.02]"
-        >Projects</a>
+          class="nav-link-mobile block flex min-h-[44px] items-center rounded-lg px-3 py-2 text-sm font-normal text-foreground transition-all duration-150 hover:scale-[1.02] hover:bg-foreground/10"
+          >Projects</a
+        >
       </li>
       <li>
         <a
           href="/cv/"
-          class="nav-link-mobile block px-3 py-2 font-normal text-sm text-foreground hover:bg-foreground/10 transition-all duration-150 min-h-[44px] flex items-center rounded-lg hover:scale-[1.02]"
-        >CV</a>
+          class="nav-link-mobile block flex min-h-[44px] items-center rounded-lg px-3 py-2 text-sm font-normal text-foreground transition-all duration-150 hover:scale-[1.02] hover:bg-foreground/10"
+          >CV</a
+        >
       </li>
     </ul>
   </div>
@@ -57,7 +97,7 @@
     const navLinks = document.querySelectorAll('.nav-link, .nav-link-mobile');
     const currentPath = window.location.pathname;
 
-    navLinks.forEach(link => {
+    navLinks.forEach((link) => {
       if (link instanceof HTMLAnchorElement) {
         if (link.getAttribute('href') === currentPath) {
           link.setAttribute('aria-current', 'page');
@@ -99,7 +139,11 @@
 
     function openMenu() {
       menuButton.setAttribute('aria-expanded', 'true');
-      mobileMenu.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+      mobileMenu.classList.remove(
+        'opacity-0',
+        'scale-95',
+        'pointer-events-none'
+      );
       mobileMenu.classList.add('opacity-100', 'scale-100');
       backdrop.classList.remove('opacity-0', 'pointer-events-none');
       backdrop.classList.add('opacity-100');
@@ -137,14 +181,17 @@
     });
 
     const mobileLinks = mobileMenu.querySelectorAll('.nav-link-mobile');
-    mobileLinks.forEach(link => {
+    mobileLinks.forEach((link) => {
       link.addEventListener('click', () => {
         closeMenu();
       });
     });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
+      if (
+        e.key === 'Escape' &&
+        menuButton.getAttribute('aria-expanded') === 'true'
+      ) {
         closeMenu();
       }
     });

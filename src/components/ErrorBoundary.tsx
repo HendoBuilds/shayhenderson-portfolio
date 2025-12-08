@@ -37,7 +37,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
       // Render fallback UI
       return (
         this.props.fallback || (
-          <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg text-center">
+          <div className="rounded-lg border border-destructive/20 bg-destructive/10 p-4 text-center">
             <p className="text-sm text-muted-foreground">
               Failed to load component
             </p>

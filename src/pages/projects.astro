@@ -3,266 +3,404 @@ import Layout from '../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import { Button } from '@/components/ui/button';
 
-const title = "Projects | Shay Henderson";
-const description = "Explore web development projects: help center platforms reaching 60k+ users, technical documentation systems, and sites built with React and TypeScript.";
+const title = 'Projects | Shay Henderson';
+const description =
+  'Explore web development projects: help center platforms reaching 60k+ users, technical documentation systems, and sites built with React and TypeScript.';
 
 const projects = [
   {
-    title: "JPG Store Help Center",
-    description: "Led creation and ongoing development of comprehensive help center with 150+ technical articles reaching 60,000+ readers annually. Integrated Intercom for AI-assisted support achieving 64.6% deflection rate and 90.2% customer satisfaction.",
-    tech: ["Intercom", "Technical Writing", "AI Automation", "Customer Support", "Knowledge Management"],
+    title: 'JPG Store Help Center',
+    description:
+      'Led creation and ongoing development of comprehensive help center with 150+ technical articles reaching 60,000+ readers annually. Integrated Intercom for AI-assisted support achieving 64.6% deflection rate and 90.2% customer satisfaction.',
+    tech: [
+      'Intercom',
+      'Technical Writing',
+      'AI Automation',
+      'Customer Support',
+      'Knowledge Management',
+    ],
     github: null,
-    live: "https://help.jpg.store",
-    category: "Documentation",
+    live: 'https://help.jpg.store',
+    category: 'Documentation',
     featured: true,
-    image: "/jpg-store-help-center.png"
+    image: '/jpg-store-help-center.png',
   },
   {
-    title: "SecurityBot Knowledge Hub",
-    description: "Professional rework of SecurityBot's GitBook documentation, transforming it from a hobbyist reference into a structured, production-ready knowledge base with comprehensive product coverage.",
-    tech: ["GitBook", "Technical Writing", "Documentation", "QA Testing"],
+    title: 'SecurityBot Knowledge Hub',
+    description:
+      "Professional rework of SecurityBot's GitBook documentation, transforming it from a hobbyist reference into a structured, production-ready knowledge base with comprehensive product coverage.",
+    tech: ['GitBook', 'Technical Writing', 'Documentation', 'QA Testing'],
     github: null,
-    live: "https://securitybot.gitbook.io/securitybot-knowledge-hub/",
-    category: "Documentation",
+    live: 'https://securitybot.gitbook.io/securitybot-knowledge-hub/',
+    category: 'Documentation',
     featured: true,
-    image: "/securitybot-knowledge-hub.png"
+    image: '/securitybot-knowledge-hub.png',
   },
   {
-    title: "Portfolio Website",
-    description: "Modern, responsive portfolio built with Astro and Tailwind CSS. Features dark mode, smooth animations, and optimized performance.",
-    tech: ["Astro", "TypeScript", "Tailwind CSS", "Vercel"],
-    github: "https://github.com/HendoBuilds/shayhenderson-portfolio",
-    live: "https://www.shayhenderson.dev",
-    category: "Frontend",
+    title: 'Portfolio Website',
+    description:
+      'Modern, responsive portfolio built with Astro and Tailwind CSS. Features dark mode, smooth animations, and optimized performance.',
+    tech: ['Astro', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+    github: 'https://github.com/HendoBuilds/shayhenderson-portfolio',
+    live: 'https://www.shayhenderson.dev',
+    category: 'Frontend',
     featured: true,
-    image: "/shay-portfolio.webp"
-  }
+    image: '/shay-portfolio.webp',
+  },
 ];
 
-const categories = [...new Set(projects.map(project => project.category))];
+const categories = [...new Set(projects.map((project) => project.category))];
 ---
 
 <Layout title={title} description={description}>
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.shayhenderson.dev"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Projects",
-        "item": "https://www.shayhenderson.dev/projects"
-      }
-    ]
-  })} />
-
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "Shay Henderson's Project Portfolio",
-    "description": "Collection of web development and technical documentation projects",
-    "numberOfItems": projects.length,
-    "itemListElement": projects.map((project, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "item": {
-        "@type": "CreativeWork",
-        "name": project.title,
-        "description": project.description,
-        "author": {
-          "@type": "Person",
-          "name": "Shay Henderson",
-          "url": "https://www.shayhenderson.dev"
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.shayhenderson.dev',
         },
-        "url": project.live,
-        "keywords": project.tech.join(", "),
-        "genre": project.category,
-        "isAccessibleForFree": true,
-        ...(project.github && { "codeRepository": project.github })
-      }
-    }))
-  })} />
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Projects',
+          item: 'https://www.shayhenderson.dev/projects',
+        },
+      ],
+    })}
+  />
 
-  <div class="container mx-auto px-6 py-8 max-w-6xl">
-    <div class="text-center mb-12">
-      <h1 class="text-4xl font-bold text-foreground mb-4">Projects Portfolio</h1>
-      <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
-        A collection of web development projects showcasing various technologies,
-        from full-stack applications to automation tools and system utilities.
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: "Shay Henderson's Project Portfolio",
+      description:
+        'Collection of web development and technical documentation projects',
+      numberOfItems: projects.length,
+      itemListElement: projects.map((project, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'CreativeWork',
+          name: project.title,
+          description: project.description,
+          author: {
+            '@type': 'Person',
+            name: 'Shay Henderson',
+            url: 'https://www.shayhenderson.dev',
+          },
+          url: project.live,
+          keywords: project.tech.join(', '),
+          genre: project.category,
+          isAccessibleForFree: true,
+          ...(project.github && { codeRepository: project.github }),
+        },
+      })),
+    })}
+  />
+
+  <div class="container mx-auto max-w-6xl px-6 py-8">
+    <div class="mb-12 text-center">
+      <h1 class="mb-4 text-4xl font-bold text-foreground">
+        Projects Portfolio
+      </h1>
+      <p class="mx-auto max-w-3xl text-xl text-muted-foreground">
+        A collection of web development projects showcasing various
+        technologies, from full-stack applications to automation tools and
+        system utilities.
       </p>
     </div>
 
     <section class="mb-16">
-      <h2 class="text-2xl font-semibold text-foreground mb-8 border-b pb-2">
+      <h2 class="mb-8 border-b pb-2 text-2xl font-semibold text-foreground">
         Featured Projects
       </h2>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-        {projects.filter(p => p.featured).map((project) => (
-          <div class="bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border">
-            {project.image ? (
-              <img
-                src={project.image}
-                alt={`Screenshot of ${project.title}`}
-                class="aspect-video w-full object-cover"
-                loading="lazy"
-              />
-            ) : (
-              <div class="h-48 bg-gradient-to-br from-muted to-muted-foreground/20 flex items-center justify-center">
-                <Icon name="mdi:code-braces" class="text-6xl text-primary-foreground" />
-              </div>
-            )}
-            <div class="p-6">
-              <div class="flex items-center justify-between mb-3">
-                <h3 class="text-2xl font-semibold text-foreground">{project.title}</h3>
-                <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                  {project.category}
-                </span>
-              </div>
-              <p class="text-muted-foreground mb-4 leading-relaxed">{project.description}</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                {project.tech.map((tech) => (
-                  <span class="px-2 py-1 bg-muted text-muted-foreground text-xs rounded">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              <div class="flex gap-3">
-                {project.live && (
-                  <Button asChild>
-                    <a href={project.live} target="_blank" rel="noopener noreferrer" aria-label={`Live demo for ${project.title}`}>
-                      <Icon name="mdi:open-in-new" class="text-lg mr-2" />
-                      Live Demo
-                    </a>
-                  </Button>
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
+        {
+          projects
+            .filter((p) => p.featured)
+            .map((project) => (
+              <div class="overflow-hidden rounded-xl border bg-card shadow-lg transition-all duration-300 hover:shadow-xl">
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={`Screenshot of ${project.title}`}
+                    class="aspect-video w-full object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="flex h-48 items-center justify-center bg-gradient-to-br from-muted to-muted-foreground/20">
+                    <Icon
+                      name="mdi:code-braces"
+                      class="text-6xl text-primary-foreground"
+                    />
+                  </div>
                 )}
-                {project.github && (
-                  <Button variant="secondary" asChild>
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`View source code for ${project.title} on GitHub`}>
-                      <Icon name="mdi:github" class="text-lg mr-2" />
-                      GitHub
-                    </a>
-                  </Button>
-                )}
+                <div class="p-6">
+                  <div class="mb-3 flex items-center justify-between">
+                    <h3 class="text-2xl font-semibold text-foreground">
+                      {project.title}
+                    </h3>
+                    <span class="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">
+                      {project.category}
+                    </span>
+                  </div>
+                  <p class="mb-4 leading-relaxed text-muted-foreground">
+                    {project.description}
+                  </p>
+                  <div class="mb-4 flex flex-wrap gap-2">
+                    {project.tech.map((tech) => (
+                      <span class="rounded bg-muted px-2 py-1 text-xs text-muted-foreground">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div class="flex gap-3">
+                    {project.live && (
+                      <Button asChild>
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Live demo for ${project.title}`}
+                        >
+                          <Icon name="mdi:open-in-new" class="mr-2 text-lg" />
+                          Live Demo
+                        </a>
+                      </Button>
+                    )}
+                    {project.github && (
+                      <Button variant="secondary" asChild>
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`View source code for ${project.title} on GitHub`}
+                        >
+                          <Icon name="mdi:github" class="mr-2 text-lg" />
+                          GitHub
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        ))}
+            ))
+        }
       </div>
     </section>
 
     <section>
-      <h2 class="text-2xl font-semibold text-foreground mb-8 border-b pb-2">
+      <h2 class="mb-8 border-b pb-2 text-2xl font-semibold text-foreground">
         All Projects
       </h2>
 
-      <div class="flex flex-wrap gap-3 mb-8" role="group" aria-label="Filter projects by category">
-        <Button className="category-filter" data-category="all" variant="default" aria-pressed="true">All Categories</Button>
-        {categories.map((category) => (
-          <Button className="category-filter" data-category={category.toLowerCase()} variant="secondary" aria-pressed="false">{category}</Button>
-        ))}
+      <div
+        class="mb-8 flex flex-wrap gap-3"
+        role="group"
+        aria-label="Filter projects by category"
+      >
+        <Button
+          className="category-filter"
+          data-category="all"
+          variant="default"
+          aria-pressed="true">All Categories</Button
+        >
+        {
+          categories.map((category) => (
+            <Button
+              className="category-filter"
+              data-category={category.toLowerCase()}
+              variant="secondary"
+              aria-pressed="false"
+            >
+              {category}
+            </Button>
+          ))
+        }
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
-        {projects.map((project) => (
-          <div class="project-card bg-card rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border overflow-hidden" data-category={project.category.toLowerCase()}>
-            {project.image ? (
-              <img
-                src={project.image}
-                alt={`Screenshot of ${project.title}`}
-                class="aspect-video w-full object-cover"
-                loading="lazy"
-              />
-            ) : (
-              <div class="h-32 bg-gradient-to-br from-muted to-muted-foreground/20 flex items-center justify-center">
-                <Icon name="mdi:code-braces" class="text-4xl text-primary-foreground" />
-              </div>
-            )}
-            <div class="p-4">
-              <div class="flex items-center justify-between mb-2">
-                <h3 class="text-lg font-semibold text-foreground">{project.title}</h3>
-                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">
-                  {project.category}
-                </span>
-              </div>
-              <p class="text-muted-foreground text-sm mb-3">{project.description}</p>
-              <div class="flex flex-wrap gap-1 mb-3">
-                {project.tech.slice(0, 3).map((tech) => (
-                  <span class="px-2 py-1 bg-muted text-muted-foreground text-xs rounded">
-                    {tech}
+      <div
+        class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+        id="projects-grid"
+      >
+        {
+          projects.map((project) => (
+            <div
+              class="project-card overflow-hidden rounded-lg border bg-card shadow-md transition-all duration-300 hover:shadow-lg"
+              data-category={project.category.toLowerCase()}
+            >
+              {project.image ? (
+                <img
+                  src={project.image}
+                  alt={`Screenshot of ${project.title}`}
+                  class="aspect-video w-full object-cover"
+                  loading="lazy"
+                />
+              ) : (
+                <div class="flex h-32 items-center justify-center bg-gradient-to-br from-muted to-muted-foreground/20">
+                  <Icon
+                    name="mdi:code-braces"
+                    class="text-4xl text-primary-foreground"
+                  />
+                </div>
+              )}
+              <div class="p-4">
+                <div class="mb-2 flex items-center justify-between">
+                  <h3 class="text-lg font-semibold text-foreground">
+                    {project.title}
+                  </h3>
+                  <span class="rounded bg-primary/10 px-2 py-1 text-xs text-primary">
+                    {project.category}
                   </span>
-                ))}
-                {project.tech.length > 3 && (
-                  <span class="px-2 py-1 bg-muted text-muted-foreground text-xs rounded">
-                    +{project.tech.length - 3} more
-                  </span>
-                )}
-              </div>
-              <div class="flex gap-2">
-                {project.live && (
-                   <Button asChild size="sm" className="h-8">
-                    <a href={project.live} target="_blank" rel="noopener noreferrer" aria-label={`View demo of ${project.title}`}>
-                      <Icon name="mdi:open-in-new" class="text-sm mr-1" />
-                      Demo
-                    </a>
-                  </Button>
-                )}
-                {project.github && (
-                  <Button variant="secondary" asChild size="sm" className="h-8">
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} code on GitHub`}>
-                      <Icon name="mdi:github" class="text-sm mr-1" />
-                      Code
-                    </a>
-                  </Button>
-                )}
+                </div>
+                <p class="mb-3 text-sm text-muted-foreground">
+                  {project.description}
+                </p>
+                <div class="mb-3 flex flex-wrap gap-1">
+                  {project.tech.slice(0, 3).map((tech) => (
+                    <span class="rounded bg-muted px-2 py-1 text-xs text-muted-foreground">
+                      {tech}
+                    </span>
+                  ))}
+                  {project.tech.length > 3 && (
+                    <span class="rounded bg-muted px-2 py-1 text-xs text-muted-foreground">
+                      +{project.tech.length - 3} more
+                    </span>
+                  )}
+                </div>
+                <div class="flex gap-2">
+                  {project.live && (
+                    <Button asChild size="sm" className="h-8">
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`View demo of ${project.title}`}
+                      >
+                        <Icon name="mdi:open-in-new" class="mr-1 text-sm" />
+                        Demo
+                      </a>
+                    </Button>
+                  )}
+                  {project.github && (
+                    <Button
+                      variant="secondary"
+                      asChild
+                      size="sm"
+                      className="h-8"
+                    >
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`View ${project.title} code on GitHub`}
+                      >
+                        <Icon name="mdi:github" class="mr-1 text-sm" />
+                        Code
+                      </a>
+                    </Button>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </section>
 
-    <section class="mt-16 p-8 bg-muted/50 rounded-xl">
-      <h2 class="text-2xl font-semibold text-foreground mb-6 text-center">Technologies & Skills</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+    <section class="mt-16 rounded-xl bg-muted/50 p-8">
+      <h2 class="mb-6 text-center text-2xl font-semibold text-foreground">
+        Technologies & Skills
+      </h2>
+      <div
+        class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 md:gap-6"
+      >
         <div class="text-center">
-          <h3 class="font-medium text-foreground mb-2">Frontend</h3>
+          <h3 class="mb-2 font-medium text-foreground">Frontend</h3>
           <div class="flex flex-wrap justify-center gap-2">
-            <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">React</span>
-            <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Next.js</span>
-            <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">Astro</span>
-            <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">TypeScript</span>
+            <span class="rounded bg-primary/10 px-2 py-1 text-xs text-primary"
+              >React</span
+            >
+            <span class="rounded bg-primary/10 px-2 py-1 text-xs text-primary"
+              >Next.js</span
+            >
+            <span class="rounded bg-primary/10 px-2 py-1 text-xs text-primary"
+              >Astro</span
+            >
+            <span class="rounded bg-primary/10 px-2 py-1 text-xs text-primary"
+              >TypeScript</span
+            >
           </div>
         </div>
         <div class="text-center">
-          <h3 class="font-medium text-foreground mb-2">Cloud & Infrastructure</h3>
+          <h3 class="mb-2 font-medium text-foreground">
+            Cloud & Infrastructure
+          </h3>
           <div class="flex flex-wrap justify-center gap-2">
-            <span class="px-2 py-1 bg-accent text-accent-foreground text-xs rounded">GCP</span>
-            <span class="px-2 py-1 bg-accent text-accent-foreground text-xs rounded">Cloudflare</span>
-            <span class="px-2 py-1 bg-accent text-accent-foreground text-xs rounded">Azure</span>
-            <span class="px-2 py-1 bg-accent text-accent-foreground text-xs rounded">Vercel</span>
+            <span
+              class="rounded bg-accent px-2 py-1 text-xs text-accent-foreground"
+              >GCP</span
+            >
+            <span
+              class="rounded bg-accent px-2 py-1 text-xs text-accent-foreground"
+              >Cloudflare</span
+            >
+            <span
+              class="rounded bg-accent px-2 py-1 text-xs text-accent-foreground"
+              >Azure</span
+            >
+            <span
+              class="rounded bg-accent px-2 py-1 text-xs text-accent-foreground"
+              >Vercel</span
+            >
           </div>
         </div>
         <div class="text-center">
-          <h3 class="font-medium text-foreground mb-2">Tools & Platforms</h3>
+          <h3 class="mb-2 font-medium text-foreground">Tools & Platforms</h3>
           <div class="flex flex-wrap justify-center gap-2">
-            <span class="px-2 py-1 bg-accent text-accent-foreground text-xs rounded">Git/GitHub</span>
-            <span class="px-2 py-1 bg-accent text-accent-foreground text-xs rounded">Intercom</span>
-            <span class="px-2 py-1 bg-accent text-accent-foreground text-xs rounded">Linear</span>
-            <span class="px-2 py-1 bg-accent text-accent-foreground text-xs rounded">GitBook</span>
+            <span
+              class="rounded bg-accent px-2 py-1 text-xs text-accent-foreground"
+              >Git/GitHub</span
+            >
+            <span
+              class="rounded bg-accent px-2 py-1 text-xs text-accent-foreground"
+              >Intercom</span
+            >
+            <span
+              class="rounded bg-accent px-2 py-1 text-xs text-accent-foreground"
+              >Linear</span
+            >
+            <span
+              class="rounded bg-accent px-2 py-1 text-xs text-accent-foreground"
+              >GitBook</span
+            >
           </div>
         </div>
         <div class="text-center">
-          <h3 class="font-medium text-foreground mb-2">Scripting & Automation</h3>
+          <h3 class="mb-2 font-medium text-foreground">
+            Scripting & Automation
+          </h3>
           <div class="flex flex-wrap justify-center gap-2">
-            <span class="px-2 py-1 bg-accent text-accent-foreground text-xs rounded">PowerShell</span>
-            <span class="px-2 py-1 bg-accent text-accent-foreground text-xs rounded">Bash</span>
-            <span class="px-2 py-1 bg-accent text-accent-foreground text-xs rounded">Node.js</span>
+            <span
+              class="rounded bg-accent px-2 py-1 text-xs text-accent-foreground"
+              >PowerShell</span
+            >
+            <span
+              class="rounded bg-accent px-2 py-1 text-xs text-accent-foreground"
+              >Bash</span
+            >
+            <span
+              class="rounded bg-accent px-2 py-1 text-xs text-accent-foreground"
+              >Node.js</span
+            >
           </div>
         </div>
       </div>
@@ -270,27 +408,43 @@ const categories = [...new Set(projects.map(project => project.category))];
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const filterButtons = document.querySelectorAll('.category-filter');
       const projectCards = document.querySelectorAll('.project-card');
 
-      filterButtons.forEach(button => {
+      filterButtons.forEach((button) => {
         button.addEventListener('click', (e) => {
           const target = e.currentTarget as HTMLElement;
           const category = target.getAttribute('data-category');
 
           // Update active button and aria-pressed state
-          filterButtons.forEach(btn => {
+          filterButtons.forEach((btn) => {
             btn.setAttribute('aria-pressed', 'false');
-            btn.classList.remove('bg-primary', 'text-primary-foreground', 'hover:bg-primary/90');
-            btn.classList.add('bg-secondary', 'text-secondary-foreground', 'hover:bg-secondary/80');
+            btn.classList.remove(
+              'bg-primary',
+              'text-primary-foreground',
+              'hover:bg-primary/90'
+            );
+            btn.classList.add(
+              'bg-secondary',
+              'text-secondary-foreground',
+              'hover:bg-secondary/80'
+            );
           });
           target.setAttribute('aria-pressed', 'true');
-          target.classList.remove('bg-secondary', 'text-secondary-foreground', 'hover:bg-secondary/80');
-          target.classList.add('bg-primary', 'text-primary-foreground', 'hover:bg-primary/90');
+          target.classList.remove(
+            'bg-secondary',
+            'text-secondary-foreground',
+            'hover:bg-secondary/80'
+          );
+          target.classList.add(
+            'bg-primary',
+            'text-primary-foreground',
+            'hover:bg-primary/90'
+          );
 
           // Filter projects
-          projectCards.forEach(card => {
+          projectCards.forEach((card) => {
             const cardElement = card as HTMLElement;
             const cardCategory = cardElement.getAttribute('data-category');
             if (category === 'all' || cardCategory === category) {
@@ -303,4 +457,4 @@ const categories = [...new Set(projects.map(project => project.category))];
       });
     });
   </script>
-</Layout> 
+</Layout>

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { ActivityCalendar } from "react-activity-calendar";
-import type { Activity } from "react-activity-calendar";
-import { Tooltip } from "react-tooltip";
-import { cn } from "@/lib/utils";
-import { SITE_CONFIG } from "@/config";
+import React, { useState, useEffect } from 'react';
+import { ActivityCalendar } from 'react-activity-calendar';
+import type { Activity } from 'react-activity-calendar';
+import { Tooltip } from 'react-tooltip';
+import { cn } from '@/lib/utils';
+import { SITE_CONFIG } from '@/config';
 
 const GITHUB_USERNAME = SITE_CONFIG.social.github.username;
-const API_URL = "/api/github-activity/";
-const CACHE_KEY = "github-activity-cache";
+const API_URL = '/api/github-activity/';
+const CACHE_KEY = 'github-activity-cache';
 const CACHE_TTL = 1000 * 60 * 60; // 1 hour
 const CACHE_VERSION = 2;
 const FETCH_TIMEOUT = 10000;
@@ -21,18 +21,18 @@ const CALENDAR_CONFIG = {
 
 const CUSTOM_THEME = {
   light: [
-    "hsl(0, 0%, 78%)",
-    "hsl(0, 0%, 60%)",
-    "hsl(0, 0%, 42%)",
-    "hsl(0, 0%, 24%)",
-    "hsl(0, 0%, 10%)",
+    'hsl(0, 0%, 78%)',
+    'hsl(0, 0%, 60%)',
+    'hsl(0, 0%, 42%)',
+    'hsl(0, 0%, 24%)',
+    'hsl(0, 0%, 10%)',
   ],
   dark: [
-    "hsl(0, 0%, 25%)",
-    "hsl(0, 0%, 42%)",
-    "hsl(0, 0%, 58%)",
-    "hsl(0, 0%, 75%)",
-    "hsl(0, 0%, 92%)",
+    'hsl(0, 0%, 25%)',
+    'hsl(0, 0%, 42%)',
+    'hsl(0, 0%, 58%)',
+    'hsl(0, 0%, 75%)',
+    'hsl(0, 0%, 92%)',
   ],
 };
 
@@ -54,10 +54,10 @@ interface CachedData {
 }
 
 const formatDate = (dateStr: string): string => {
-  return new Date(dateStr).toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
   });
 };
 
@@ -70,15 +70,17 @@ const formatTooltip = (count: number, date: string): string => {
 
 export const GitHubActivity = ({ className }: GitHubActivityProps) => {
   const [data, setData] = useState<GitHubData | null>(null);
-  const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
+  const [status, setStatus] = useState<'loading' | 'success' | 'error'>(
+    'loading'
+  );
   const [error, setError] = useState<string | null>(null);
-  const [colorScheme, setColorScheme] = useState<"light" | "dark">("light");
+  const [colorScheme, setColorScheme] = useState<'light' | 'dark'>('light');
 
   // Detect and sync with site theme (based on .dark class)
   useEffect(() => {
     const updateColorScheme = () => {
-      const isDark = document.documentElement.classList.contains("dark");
-      setColorScheme(isDark ? "dark" : "light");
+      const isDark = document.documentElement.classList.contains('dark');
+      setColorScheme(isDark ? 'dark' : 'light');
     };
 
     // Initial check
@@ -87,7 +89,7 @@ export const GitHubActivity = ({ className }: GitHubActivityProps) => {
     // Watch for class changes on html element
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        if (mutation.attributeName === "class") {
+        if (mutation.attributeName === 'class') {
           updateColorScheme();
         }
       });
@@ -115,7 +117,7 @@ export const GitHubActivity = ({ className }: GitHubActivityProps) => {
           ) {
             if (isMounted) {
               setData(parsed.data);
-              setStatus("success");
+              setStatus('success');
             }
             clearTimeout(timeoutId);
             return;
@@ -131,14 +133,16 @@ export const GitHubActivity = ({ className }: GitHubActivityProps) => {
 
         if (!response.ok) {
           const errorData = await response.json().catch(() => ({}));
-          throw new Error(errorData.error || `Failed to fetch: ${response.status}`);
+          throw new Error(
+            errorData.error || `Failed to fetch: ${response.status}`
+          );
         }
 
         const result: GitHubData = await response.json();
 
         if (isMounted) {
           setData(result);
-          setStatus("success");
+          setStatus('success');
 
           // Cache the result
           try {
@@ -155,12 +159,16 @@ export const GitHubActivity = ({ className }: GitHubActivityProps) => {
       } catch (err) {
         clearTimeout(timeoutId);
         if (isMounted) {
-          if (err instanceof Error && err.name === "AbortError") {
-            setError("Request timed out. Please try again.");
+          if (err instanceof Error && err.name === 'AbortError') {
+            setError('Request timed out. Please try again.');
           } else {
-            setError(err instanceof Error ? err.message : "Unable to load GitHub activity");
+            setError(
+              err instanceof Error
+                ? err.message
+                : 'Unable to load GitHub activity'
+            );
           }
-          setStatus("error");
+          setStatus('error');
         }
       }
     };
@@ -175,20 +183,25 @@ export const GitHubActivity = ({ className }: GitHubActivityProps) => {
   }, []);
 
   return (
-    <div className={cn("py-8 md:py-12 lg:py-16 max-w-full overflow-hidden", className)}>
-      <h2 className="section-title text-center mb-8">GitHub Activity</h2>
+    <div
+      className={cn(
+        'max-w-full overflow-hidden py-8 md:py-12 lg:py-16',
+        className
+      )}
+    >
+      <h2 className="section-title mb-8 text-center">GitHub Activity</h2>
 
-      <div className="relative flex h-full w-full max-w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background py-12 md:py-16 lg:py-20 md:shadow-xl">
+      <div className="relative flex h-full w-full max-w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background py-12 md:py-16 md:shadow-xl lg:py-20">
         <div className="mb-8 flex flex-col items-center gap-2">
           <a
             href={`https://github.com/${GITHUB_USERNAME}`}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Visit ${GITHUB_USERNAME}'s GitHub profile`}
-            className="group flex items-center gap-2 text-foreground hover:text-primary transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            className="group flex items-center gap-2 text-foreground transition-colors duration-200 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
             <svg
-              className="w-6 h-6 transition-transform group-hover:scale-110"
+              className="h-6 w-6 transition-transform group-hover:scale-110"
               fill="currentColor"
               viewBox="0 0 24 24"
               aria-hidden="true"
@@ -201,7 +214,7 @@ export const GitHubActivity = ({ className }: GitHubActivityProps) => {
             </svg>
             <span className="text-lg font-semibold">@{GITHUB_USERNAME}</span>
             <svg
-              className="w-4 h-4 transition-transform group-hover:translate-x-1"
+              className="h-4 w-4 transition-transform group-hover:translate-x-1"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -216,42 +229,54 @@ export const GitHubActivity = ({ className }: GitHubActivityProps) => {
             </svg>
           </a>
 
-          {status === "success" && data && (
+          {status === 'success' && data && (
             <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
               <div>
                 <span className="font-semibold text-foreground">
                   {data.lastYearTotal.toLocaleString()}
-                </span>{" "}
+                </span>{' '}
                 contributions in the last year
               </div>
-              <span className="hidden sm:inline text-muted-foreground/50">•</span>
+              <span className="hidden text-muted-foreground/50 sm:inline">
+                •
+              </span>
               <div>
                 <span className="font-semibold text-foreground">
                   {data.allTimeTotal.toLocaleString()}
-                </span>{" "}
+                </span>{' '}
                 all time
               </div>
             </div>
           )}
         </div>
 
-        <div className="w-full max-w-4xl px-6 md:px-10 overflow-hidden">
-          {status === "loading" && (
-            <div className="flex items-center justify-center py-12" role="status" aria-live="polite">
-              <div className="animate-pulse flex flex-col items-center gap-2">
+        <div className="w-full max-w-4xl overflow-hidden px-6 md:px-10">
+          {status === 'loading' && (
+            <div
+              className="flex items-center justify-center py-12"
+              role="status"
+              aria-live="polite"
+            >
+              <div className="flex animate-pulse flex-col items-center gap-2">
                 <div
-                  className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"
+                  className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent"
                   aria-hidden="true"
                 />
-                <p className="text-sm text-muted-foreground">Loading GitHub activity...</p>
+                <p className="text-sm text-muted-foreground">
+                  Loading GitHub activity...
+                </p>
               </div>
             </div>
           )}
 
-          {status === "error" && (
-            <div className="flex items-center justify-center py-12" role="alert" aria-live="assertive">
+          {status === 'error' && (
+            <div
+              className="flex items-center justify-center py-12"
+              role="alert"
+              aria-live="assertive"
+            >
               <div className="text-center">
-                <p className="text-sm text-destructive mb-2">{error}</p>
+                <p className="mb-2 text-sm text-destructive">{error}</p>
                 <a
                   href={`https://github.com/${GITHUB_USERNAME}`}
                   target="_blank"
@@ -264,9 +289,9 @@ export const GitHubActivity = ({ className }: GitHubActivityProps) => {
             </div>
           )}
 
-          {status === "success" && data && (
-            <section aria-label="GitHub contribution calendar" role="region">
-              <div className="flex justify-center w-full overflow-hidden [&_.react-activity-calendar]:max-w-full [&_.react-activity-calendar_text]:fill-muted-foreground [&_.react-activity-calendar_text]:text-xs lg:[&_.react-activity-calendar]:scale-100 md:[&_.react-activity-calendar]:scale-95 sm:[&_.react-activity-calendar]:scale-85 [&_.react-activity-calendar]:scale-75">
+          {status === 'success' && data && (
+            <section aria-label="GitHub contribution calendar">
+              <div className="sm:[&_.react-activity-calendar]:scale-85 flex w-full justify-center overflow-hidden [&_.react-activity-calendar]:max-w-full [&_.react-activity-calendar]:scale-75 md:[&_.react-activity-calendar]:scale-95 lg:[&_.react-activity-calendar]:scale-100 [&_.react-activity-calendar_text]:fill-muted-foreground [&_.react-activity-calendar_text]:text-xs">
                 <ActivityCalendar
                   data={data.contributions}
                   theme={CUSTOM_THEME}
@@ -278,14 +303,17 @@ export const GitHubActivity = ({ className }: GitHubActivityProps) => {
                   maxLevel={CALENDAR_CONFIG.maxLevel}
                   renderBlock={(block, activity) =>
                     React.cloneElement(block, {
-                      "data-tooltip-id": "github-activity-tooltip",
-                      "data-tooltip-content": formatTooltip(activity.count, activity.date),
+                      'data-tooltip-id': 'github-activity-tooltip',
+                      'data-tooltip-content': formatTooltip(
+                        activity.count,
+                        activity.date
+                      ),
                     })
                   }
                 />
                 <Tooltip
                   id="github-activity-tooltip"
-                  className="!bg-popover !text-popover-foreground !text-xs !px-3 !py-2 !rounded-md !shadow-md !border !border-border"
+                  className="!bg-popover !text-popover-foreground !rounded-md !border !border-border !px-3 !py-2 !text-xs !shadow-md"
                 />
               </div>
             </section>
