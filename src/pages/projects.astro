@@ -45,8 +45,18 @@ const projects = [
     live: 'https://www.shayhenderson.dev',
     category: 'Frontend',
     featured: true,
-    image: '/shay-portfolio.webp',
+    image: "/shay-portfolio.webp"
   },
+  {
+    title: "FoxholeHub",
+    description: "One-page community hub for live Foxhole war statistics and curated content. Aggregates real-time data from Foxhole War API, YouTube, Twitch, and Steam APIs with server-side caching via Upstash Redis.",
+    tech: ["Astro", "TypeScript", "React", "Tailwind CSS", "Vercel", "Upstash Redis"],
+    github: null,
+    live: "https://www.foxholehub.com",
+    category: "Web App",
+    featured: true,
+    image: "/foxholehub-og.png"
+  }
 ];
 
 const categories = [...new Set(projects.map((project) => project.category))];
